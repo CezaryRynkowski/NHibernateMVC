@@ -1,0 +1,16 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    @*    //<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    //<script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>*@
+
+    @Styles.Render("~/css")
+    @Scripts.Render("~/js/scripts/all")
+</head>
+
+<body>
+    @RenderBody()
+</body>
+</html>
