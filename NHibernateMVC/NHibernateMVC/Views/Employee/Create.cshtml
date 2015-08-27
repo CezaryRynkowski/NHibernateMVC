@@ -1,5 +1,113 @@
-﻿@{
+﻿@using System.Web.Mvc.Html
+@model NHibernateMVC.Models.Employee.EmployeeViewModel
+@{
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+@using (Html.BeginForm("Create", "Employee", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <fieldset>
+        <legend>Create new Employee</legend>
+
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="control-group">
+                    <div class="controls">
+                        @Html.Label("EmployeeID")
+                        @Html.TextBoxFor(m => m.EmployeeForm.EmployeeId, new { @readonly = true })
+                    </div>
+                </div>
+            </div>
+            <div class="span6">
+                <div class="control-group">
+                    <div class="controls">
+                        @Html.Label("Birth date of employee")
+                        @Html.TextBoxFor(m => m.EmployeeForm.BirthDate ,"{0:d}, dt")
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="control-group">
+                    <div class="controls">
+                        @Html.Label("First name of employee")
+                        @Html.TextBoxFor(m => m.EmployeeForm.FirstName)
+                    </div>
+                </div>
+            </div>
+            <div class="span6">
+                <div class="control-group">
+                    <div class="controls">
+                        @Html.Label("Last name of employee")
+                        @Html.TextBoxFor(m => m.EmployeeForm.LastName)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="control-group">
+                    <div class="controls">
+                        @Html.Label("Sex")
+                        @Html.TextBoxFor(m => m.EmployeeForm.Sex)
+                    </div>
+                </div>
+            </div>
+            <div class="span6">
+                <div class="control-group">
+                    <div class="controls">
+                        @Html.Label("ManagerId")
+                        @Html.TextBoxFor(m => m.EmployeeForm.ManagerId)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </fieldset>
+    <fieldset>
+        <legend>Adress Employee</legend>
+
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="control-group">
+                    <div class="controls">
+                        @Html.Label("City")
+                        @Html.TextBoxFor(m => m.EmployeeForm.City)
+                    </div>
+                </div>
+            </div>
+            <div class="span6">
+                <div class="control-group">
+                    <div class="controls">
+                        @Html.Label("County")
+                        @Html.TextBoxFor(m => m.EmployeeForm.County)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="control-group">
+                    <div class="controls">
+                        @Html.Label("Street")
+                        @Html.TextBoxFor(m => m.EmployeeForm.Street)
+                    </div>
+                </div>
+            </div>
+            <div class="span6">
+                <div class="control-group">
+                    <div class="controls">
+                        @Html.Label("ZipCode")
+                        @Html.TextBoxFor(m => m.EmployeeForm.ZipCode)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    
+    <input type="submit" value="Create" class="btn btn-primary" />
+}

@@ -16,10 +16,10 @@ namespace NHibernateMVC.Infrastructure.Web
         /// <summary>
         /// Windsor container reference injected on controller creation
         /// </summary>
-        public IWindsorContainer Container { get; set; }
+        public IWindsorContainer Container{ get; set; }
 
-        private CommandRunner commandRunner;
-
+        private CommandRunner commandRunner { get; set; }
+    
         /// <summary>
         /// Command runner used internally to execute commands, resolved from container
         /// </summary>
@@ -38,12 +38,12 @@ namespace NHibernateMVC.Infrastructure.Web
         /// </summary>
         protected CommandExecutionResult<T> ExecuteCommand<T>(Command<T> cmd)
         {
-            var cmdResult = CommandRunner.ExecuteCommand(cmd);
-            if (!cmdResult.Success)
-            {
-                Error(cmdResult.MessageForHumans);
-            }
-            return cmdResult;
+                var cmdResult = CommandRunner.ExecuteCommand(cmd);
+                if (!cmdResult.Success)
+                {
+                    Error(cmdResult.MessageForHumans);
+                }
+                return cmdResult;
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace NHibernateMVC.Infrastructure.Web
         /// </summary>
         protected void Attention(string message)
         {
-            AddMessage(Alerts.ATTENTION, message);
+            //AddMessage(Alerts.ATTENTION, message);
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace NHibernateMVC.Infrastructure.Web
         /// </summary>
         protected void Success(string message)
         {
-            AddMessage(Alerts.SUCCESS, message);
+            //AddMessage(Alerts.SUCCESS, message);
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace NHibernateMVC.Infrastructure.Web
         /// </summary>
         protected void Information(string message)
         {
-            AddMessage(Alerts.INFORMATION, message);
+            //AddMessage(Alerts.INFORMATION, message);
         }
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace NHibernateMVC.Infrastructure.Web
         /// </summary>
         protected void Error(string message)
         {
-            AddMessage(Alerts.ERROR, message);
+            //AddMessage(Alerts.ERROR, message);
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace NHibernateMVC.Infrastructure.Web
                     errMsg.AppendLine(modelError.ErrorMessage);
                 }
             }
-            AddMessage(Alerts.ERROR, errMsg.ToString());
+            //AddMessage(Alerts.ERROR, errMsg.ToString());
         }
     }
 }

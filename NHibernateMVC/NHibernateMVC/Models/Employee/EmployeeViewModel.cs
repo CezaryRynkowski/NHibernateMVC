@@ -11,7 +11,7 @@ namespace NHibernateMVC.Models.Employee
         
         public EmployeeViewModel(EmployeeForm employeeForm)
         {
-            EmployeeForm = employeeForm;
+            EmployeeForm = new EmployeeForm(employeeForm);
         }
 
         public EmployeeViewModel()

@@ -21,15 +21,20 @@ namespace NHibernateMVC.Domain.Employee
 
         public override Guid Execute()
         {
-            //TODO
+            EmployeeBuilder builder = new EmployeeBuilder(Session);
+            //construct entity
+            var employee = builder.ConstructEmployee(employeeForm);
+            Session.Save(employee);
+
+            return employee.EmployeeId;
         }
 
         public NHibernate.ISession Session { get; set; }
 
         public override void SetupDependencies(IWindsorContainer container)
         {
-            //TODO
-            throw new NotImplementedException();
+            employeeBuilder = container.Resolve<EmployeeBuilder>();
+            employeeValidationService = container.Resolve<EmployeeValidationService>();
         }
     }
 }

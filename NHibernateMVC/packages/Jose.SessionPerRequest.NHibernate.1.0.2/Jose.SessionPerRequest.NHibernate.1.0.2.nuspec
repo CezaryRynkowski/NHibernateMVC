@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Jose.SessionPerRequest.NHibernate</id>
+    <version>1.0.2</version>
+    <title>Jose.SessionPerRequest.NHibernate</title>
+    <authors>Jose Romaniello</authors>
+    <owners>Jose Romaniello</owners>
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>http://jfromaniello.blogspot.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Light implementation of the session-per-request pattern for NHibernate. Created by Jose F. Romaniello (@jfroma).</description>
+    <summary>Light implementation of the session-per-request pattern for NHibernate. Created by Jose F. Romaniello (@jfroma).</summary>
+    <dependencies>
+      <dependency id="NHibernate" version="3.0.0" />
+    </dependencies>
+    <references />
+  </metadata>
+</package>

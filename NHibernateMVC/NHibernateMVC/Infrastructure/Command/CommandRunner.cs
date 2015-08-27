@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Data;
 using Castle.Core.Logging;
 using Castle.Windsor;
 using NHibernate;
@@ -10,8 +7,8 @@ namespace NHibernateMVC.Infrastructure.Command
 {
     public class CommandRunner
     {
-        private readonly IWindsorContainer windsor;
-        private readonly ILogger log;
+        private readonly IWindsorContainer _windsor;
+        //private readonly ILogger log;
 
         /// <summary>
         /// Creates instance of command runner
@@ -19,8 +16,8 @@ namespace NHibernateMVC.Infrastructure.Command
         /// <param name="windsor">IoC container</param>
         public CommandRunner(IWindsorContainer windsor) 
         {
-            this.windsor = windsor;
-            this.log = this.windsor.Resolve<ILogger>();
+            this._windsor = windsor;
+            //this.log = this.windsor.Resolve<ILogger>();
         }
 
         /// <summary>
@@ -33,7 +30,7 @@ namespace NHibernateMVC.Infrastructure.Command
         {
             ProvideCommonServices(cmd);
 
-            cmd.SetupDependencies(windsor);
+            //cmd.SetupDependencies(windsor);
 
             return InternalRun(cmd);
         }
@@ -45,12 +42,12 @@ namespace NHibernateMVC.Infrastructure.Command
         {
             if (cmd is INeedSession) 
             {
-                ((INeedSession)cmd).Session = this.windsor.Resolve<ISession>();
+                ((INeedSession)cmd).Session = _windsor.Resolve<ISession>();
             }
 
             if (cmd is INeedLogger)
             {
-                ((INeedLogger)cmd).Logger = this.windsor.Resolve<ILogger>();
+                ((INeedLogger) cmd).Logger = _windsor.Resolve<ILogger>();
             }
         }
 
@@ -62,29 +59,18 @@ namespace NHibernateMVC.Infrastructure.Command
         /// <returns></returns>
         protected virtual CommandExecutionResult<T> InternalRun<T>(Command<T> cmd)
         {
-            //try
-            //{
-            //    var decoratedCommand = Decorate(cmd);
-            //    var result = decoratedCommand.Execute();
+            try
+            {
+                var decoratedCommand = Decorate(cmd);
+                var result = decoratedCommand.Execute();
             
-            //    return CommandExecutionResult<T>.SuccessResult(result);
-            //}
-            //catch (BusinessException businessEx)
-            //{
-            //    LogCommandExecutionError(cmd, businessEx);
-            //    return CommandExecutionResult<T>.FailureResult(businessEx.ErrorCode, businessEx.Message);
-            //}
-            //catch (SecurityException securityEx)
-            //{
-            //    LogCommandExecutionError(cmd, securityEx);
-            //    return CommandExecutionResult<T>.FailureResult(SecurityException.SecurityExceptionCode, securityEx.Message);
-            //}
-            //catch (System.Exception e)
-            //{
-            //    LogCommandExecutionError(cmd, e);
-            //    return CommandExecutionResult<T>.FailureResult("UnexpectedError", Resources.Labels.UnexpectedErrorDefaultMessage);
-            //}
-            return null;
+                return CommandExecutionResult<T>.SuccessResult(result);
+            }
+            catch (NoNullAllowedException businessEx)
+            {
+                LogCommandExecutionError(cmd, businessEx);
+                return CommandExecutionResult<T>.FailureResult(businessEx.InnerException.ToString(), businessEx.Message);
+            }
         }
 
         /// <summary>
@@ -96,7 +82,7 @@ namespace NHibernateMVC.Infrastructure.Command
             if (cmd is INeedAutocommitTransaction)
             {
                 var decoratedCmd = new TxDecorator<T>(cmd);
-                decoratedCmd.SetupDependencies(windsor);
+                decoratedCmd.SetupDependencies(_windsor);
                 return decoratedCmd;
 
             }
@@ -111,8 +97,8 @@ namespace NHibernateMVC.Infrastructure.Command
         /// <param name="exception">exception</param>
         protected void LogCommandExecutionError<T>(Command<T> cmd,System.Exception exception)
         {
-            log.ErrorFormat("Execution of command: {0} failed. Error details below",cmd.GetType().ToString());
-            log.Error(exception.Message, exception);            
+            //log.ErrorFormat("Execution of command: {0} failed. Error details below",cmd.GetType().ToString());
+            //log.Error(exception.Message, exception);            
         }
     }
 
@@ -142,7 +128,7 @@ namespace NHibernateMVC.Infrastructure.Command
         {
             using (var tx = currentSession.BeginTransaction())
             {
-                T cmdResult = component.Execute();
+                var cmdResult = component.Execute();
                 tx.Commit();
                 return cmdResult;
             }

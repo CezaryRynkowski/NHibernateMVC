@@ -1,0 +1,5 @@
+C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVCdb\bin\Debug\NHibernateMVCdb.dacpac
+C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVCdb\bin\Debug\NHibernateMVCdb.dll
+C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVCdb\bin\Debug\NHibernateMVCdb.pdb
+C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVCdb\obj\Debug\NHibernateMVCdb.dll
+C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVCdb\obj\Debug\NHibernateMVCdb.pdb

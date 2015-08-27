@@ -3,3 +3,19 @@
 }
 
 <h2>Index</h2>
+
+<ul>
+   @* @foreach(var item in Model) 
+    { 
+        <li>@</li>
+    }*@
+    </ul>
+
+<input type="button" class="btn" id="btnRedirect" value="Create new Employee"/>
+<script>
+    $(function() {
+        $('#btnRedirect').click(function() {
+            window.location.href = "@Url.Action("Create","Employee")";
+        });
+    })
+</script>

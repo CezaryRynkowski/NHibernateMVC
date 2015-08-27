@@ -14,7 +14,6 @@ C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVC\bin\System.Web.Razor
 C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVC\bin\System.Web.WebPages.xml
 C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVC\bin\System.Web.WebPages.Deployment.xml
 C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVC\bin\System.Web.WebPages.Razor.xml
-C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVC\obj\Debug\NHibernateMVC.csprojResolveAssemblyReference.cache
 C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVC\obj\Debug\NHibernateMVC.dll
 C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVC\obj\Debug\NHibernateMVC.pdb
 C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVC\bin\Antlr3.Runtime.dll
@@ -26,5 +25,16 @@ C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVC\bin\Newtonsoft.Json.
 C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVC\bin\System.Web.Optimization.xml
 C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVC\bin\Iesi.Collections.dll
 C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVC\bin\NHibernate.dll
-C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVC\bin\Iesi.Collections.xml
-C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVC\bin\NHibernate.xml
+C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVC\bin\Castle.Core.dll
+C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVC\bin\Castle.Windsor.dll
+C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVC\bin\Castle.Core.xml
+C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVC\bin\Castle.Windsor.xml
+C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVC\bin\log4net.dll
+C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVC\bin\WebActivator.dll
+C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVC\bin\log4net.xml
+C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVC\bin\NHibernate.ByteCode.Castle.dll
+C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVC\bin\Iesi.Collections.pdb
+C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVC\bin\NHibernate.ByteCode.Castle.xml
+C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVC\bin\Castle.Facilities.Logging.dll
+C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVC\bin\Castle.Facilities.Logging.xml
+C:\workplace\repo\NHibernateMVC\NHibernateMVC\NHibernateMVC\obj\Debug\NHibernateMVC.csprojResolveAssemblyReference.cache
