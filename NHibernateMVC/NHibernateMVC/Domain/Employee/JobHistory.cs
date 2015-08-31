@@ -8,11 +8,11 @@ namespace NHibernateMVC.Domain.Employee
 
     public class JobHistory
     {
-        public virtual Guid Jobhistoryid { get; set; }
-        public virtual int Positionid { get; set; }
-        public virtual DateTime Startdate { get; set; }
-        public virtual DateTime Stopdate { get; set; }
+        public virtual Guid JobHistoryId { get; set; }
+        public virtual int PositionId { get; set; }
+        public virtual DateTime StartDate { get; set; }
+        public virtual DateTime? StopDate { get; set; }
         public virtual string Salary { get; set; }
-        public virtual System.Guid Employeeid { get; set; }
+        public virtual System.Guid EmployeeId { get; set; }
     }
 }

@@ -150,8 +150,8 @@ namespace NHibernateMVC.Infrastructure.SessionManagement
 
 		public void Dispose()
 		{
-			app.BeginRequest -= ContextBeginRequest;
-			app.EndRequest -= ContextEndRequest;
+			//app.BeginRequest -= ContextBeginRequest;
+			//app.EndRequest -= ContextEndRequest;
 		}
 	}
 }

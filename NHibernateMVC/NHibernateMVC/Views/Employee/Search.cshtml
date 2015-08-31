@@ -1,0 +1,43 @@
+﻿@model NHibernateMVC.Models.Employee.EmployeeSearchViewModel
+@{
+    ViewBag.Title = "Search";
+}
+
+<div class="span9" id="policySearch">
+    @using (Html.BeginForm("Find", "Employee", FormMethod.Post, new { id = "EmployeeSearchForm" }))
+    {
+        @Html.Hidden("isModal", true)
+        <fieldset>
+            <legend>Search Employee</legend>
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.SearchForm.EmployeeId, new { @class = "span3", placeholder = "Employee number" })
+            </div>
+            <div class="controls controls-row">
+                @Html.TextBoxFor(m => m.SearchForm.FirstName, new { @class = "span2", placeholder = "First name" })
+                @Html.TextBoxFor(m => m.SearchForm.LastName, new { @class = "span2", placeholder = "Last name" })
+                @Html.TextBoxFor(m => m.SearchForm.ManagerId, new { @class = "span2", placeholder = "ManagerId" })
+                @Html.TextBoxFor(m => m.SearchForm.ZipCode, new { @class = "span2", placeholder = "ZipCode" })
+            </div>
+
+            <div class="control-group">
+                <button type="submit" class="btn btn-primary pull-right">Search</button>
+            </div>
+        </fieldset>
+    }
+    <div class="control-group">
+        <a class="btn btn-info" href="@Url.Action("Create", "Employee")">Create new Employee</a>
+    </div>
+    <div id="#employeeSearchResults" class="span6">
+    </div>
+
+</div>
+
+@*<script type="text/javascript" src="/Scripts/Application/Employee/SelectEmployeeController.js"></script>
+<script type="text/javascript">
+    //init controller
+    $(function() {
+        var ctrl = new SelectEmployeeController();
+        ctrl.init();
+    })
+</script>*@

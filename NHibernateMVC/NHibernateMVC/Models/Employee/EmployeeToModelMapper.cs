@@ -23,6 +23,15 @@ namespace NHibernateMVC.Models.Employee
               ZipCode = employee.ZipCode,
             };
         }
+
+       public static EmployeeSearchResultItem EmployeeToEmployeeSearchResultItem(Domain.Employee.Employee e)
+       {
+           return new EmployeeSearchResultItem()
+           {
+               EmployeeId = e.EmployeeId,
+               Name = string.Concat(e.FirstName," ",e.LastName)
+           };
+       }
     }
 
 }

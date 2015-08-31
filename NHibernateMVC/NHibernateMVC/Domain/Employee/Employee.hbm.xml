@@ -32,4 +32,31 @@
       <column name="ZipCode" sql-type="varchar" not-null="true" />
     </property>
   </class>
+
+  <sql-query name="employeeSearchQuery">
+    <![CDATA[
+    select
+e.EmployeeId as EmployeeId,
+e.FirstName as FirstName,
+e.LastName as LastName,
+e.ManagerId as ManagerId,
+e.City as City,
+e.Street as Street,
+e.Country as Country,
+e.ZipCode as ZipCode
+from Employee e
+where 
+(:employeeid is null or e.EmployeeId = :employeeid)
+and
+(:firstname is null or e.FirstName = :firstname)
+and
+(:lastname is null or e.LastName = :lastname)
+and
+(:manager is null or e.ManagerId = :manager)
+and
+(:zipcode is null or e.ZipCode = :zipcode)
+    ]]>
+  </sql-query>
 </hibernate-mapping>
+<!--inner join Manager m 
+on e.EmployeeId = m.EmployeeId-->

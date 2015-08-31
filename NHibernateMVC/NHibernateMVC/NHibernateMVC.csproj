@@ -139,9 +139,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobHistoryController.cs" />
     <Compile Include="Data\Dao.cs" />
     <Compile Include="Data\Interfaces.cs" />
     <Compile Include="Domain\Employee\CreateEmployeeCommand.cs" />
+    <Compile Include="Domain\Employee\DeleteEmployeeCommand.cs" />
     <Compile Include="Domain\Employee\Employee.cs" />
     <Compile Include="Domain\Employee\EmployeeBuilder.cs" />
     <Compile Include="Domain\Employee\EmployeeValidationService.cs" />
@@ -152,6 +154,7 @@
     </Compile>
     <Compile Include="Infrastructure\Command\Command.cs" />
     <Compile Include="Infrastructure\Command\CommandRunner.cs" />
+    <Compile Include="Infrastructure\ExtensionMethods\SqlWilcardStringExtensions.cs" />
     <Compile Include="Infrastructure\Installers\ControllerInstaller.cs" />
     <Compile Include="Infrastructure\Installers\DaoInstaller.cs" />
     <Compile Include="Infrastructure\Installers\LoggingInstaller.cs" />
@@ -163,8 +166,12 @@
     <Compile Include="Infrastructure\SessionManagement\LazySessionContext.cs" />
     <Compile Include="Infrastructure\Web\ControllerBase.cs" />
     <Compile Include="Models\Employee\EmployeeForm.cs" />
+    <Compile Include="Models\Employee\EmployeeSearchForm.cs" />
+    <Compile Include="Models\Employee\EmployeeSearchResultItem.cs" />
+    <Compile Include="Models\Employee\EmployeeSearchViewModel.cs" />
     <Compile Include="Models\Employee\EmployeeToModelMapper.cs" />
     <Compile Include="Models\Employee\EmployeeViewModel.cs" />
+    <Compile Include="Models\Employee\GetEmployeeListQuery.cs" />
     <Compile Include="Models\Employee\GetEmployeeQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -233,6 +240,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Scripts\Application\Employee\SearchEmployeeController.js" />
+    <Content Include="Scripts\Application\Employee\SelectEmployeeController.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -267,6 +276,8 @@
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Shared\_ModalLayout.cshtml" />
     <Content Include="Views\Employee\Edit.cshtml" />
+    <Content Include="Views\Employee\Search.cshtml" />
+    <Content Include="Views\Employee\_EmployeeList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

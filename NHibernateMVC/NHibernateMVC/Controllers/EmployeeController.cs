@@ -74,5 +74,22 @@ namespace NHibernateMVC.Controllers
             return View("Edit", vm);
         }
 
+        public ActionResult Search()
+        {
+            return View("Search", new EmployeeSearchViewModel());
+        }
+
+        [HttpPost]
+        public ActionResult Find(EmployeeSearchForm searchForm)
+        {
+            return PartialView("_EmployeeList", Query(new GetEmployeeListQuery(searchForm)));
+        }
+
+        public ActionResult Delete(Guid employeeId)
+        {
+            var cmdResult = ExecuteCommand(new DeleteEmployeeCommand(employeeId));
+            return RedirectToAction("Search", "Employee");
+        }
+
     }
 }
