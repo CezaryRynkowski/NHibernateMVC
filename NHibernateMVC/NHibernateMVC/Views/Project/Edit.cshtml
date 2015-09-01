@@ -1,0 +1,33 @@
+﻿@model NHibernateMVC.Models.Project.ProjectViewModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm("Update", "Project", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <fieldset>
+        <legend>Create new Project</legend>
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="control-group">
+                    <div class="controls">
+                        @Html.Label("ProjectId")
+                        @Html.TextBoxFor(m => m.ProjectForm.ProjectId, new { @readonly = true })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="control-group">
+                    <div class="controls">
+                        @Html.Label("Project Name")
+                        @Html.TextBoxFor(m => m.ProjectForm.ProjectName)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <input type="submit" value="Save" class="btn btn-primary" />
+}

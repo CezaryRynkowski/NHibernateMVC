@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
+using Iesi.Collections.Generic;
 
 namespace NHibernateMVC.Domain.Employee
 {
@@ -16,5 +17,13 @@ namespace NHibernateMVC.Domain.Employee
         public virtual string Street { get; set; }
         public virtual string Country { get; set; }
         public virtual string ZipCode { get; set; }
+
+        public virtual Iesi.Collections.Generic.ISet<Project.Project> Projects { get; set; }
+
+        public Employee()
+        {
+            Projects = new HashedSet<Project.Project>();
+        }
+
     }
 }

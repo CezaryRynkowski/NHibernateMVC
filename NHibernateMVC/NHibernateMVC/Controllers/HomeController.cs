@@ -8,7 +8,7 @@ using NHibernateMVC.Domain.Employee;
 
 namespace NHibernateMVC.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : Infrastructure.Web.ControllerBase
     {
         private readonly IDao<Employee> daoEmployee;
 

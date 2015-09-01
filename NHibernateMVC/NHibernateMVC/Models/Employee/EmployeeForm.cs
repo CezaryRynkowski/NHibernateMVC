@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace NHibernateMVC.Models.Employee
 {
@@ -14,6 +15,8 @@ namespace NHibernateMVC.Models.Employee
         public string Street { get; set; }
         public string County { get; set; }
         public string ZipCode { get; set; }
+        public List<Domain.Project.Project> Projects { get; set; }
+        public List<Domain.Project.Project> AllProjects { get; set; } 
 
         public EmployeeForm(EmployeeForm employeeForm)
         {
@@ -27,6 +30,8 @@ namespace NHibernateMVC.Models.Employee
             Street = employeeForm.Street;
             County = employeeForm.County;
             ZipCode = employeeForm.ZipCode;
+            Projects = employeeForm.Projects;
+            AllProjects = employeeForm.AllProjects;
         }
 
         public EmployeeForm() { }
@@ -43,6 +48,7 @@ namespace NHibernateMVC.Models.Employee
             public string Street { get; set; }
             public string County { get; set; }
             public string ZipCode { get; set; }
+            public List<Domain.Project.Project> Projects { get; set; } 
         }
     }
 

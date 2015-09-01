@@ -1,0 +1,27 @@
+﻿@model NHibernateMVC.Models.Project.ProjectSearchViewModel
+@{
+    ViewBag.Title = "Search";
+}
+
+<div class="span9" id="policySearch">
+    @using (Html.BeginForm("Find", "Project", FormMethod.Post, new { id = "EmployeeSearchForm" }))
+    {
+        @Html.Hidden("isModal", true)
+        <fieldset>
+            <legend>Search Employee</legend>
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.SearchForm.ProjectName, new { @class = "span3", placeholder = "Employee number" })
+            </div>
+            <div class="control-group">
+                <button type="submit" class="btn btn-primary pull-right">Search</button>
+            </div>
+        </fieldset>
+    }
+    <div class="control-group">
+        <a class="btn btn-info" href="@Url.Action("Create", "Project")">Create new Employee</a>
+    </div>
+    <div id="#employeeSearchResults" class="span6">
+    </div>
+
+</div>

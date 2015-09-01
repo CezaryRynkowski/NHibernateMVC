@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<hibernate-mapping assembly="NHibernateMVC" namespace="NHibernateMVC.Domain.Employee" xmlns="urn:nhibernate-mapping-2.2">
-  <class name="Jobhistory" table="JobHistory" lazy="true" >
-    <id name="Jobhistoryid" column="JobHistoryId" />
+<hibernate-mapping assembly="NHibernateMVC" namespace="NHibernateMVC.Domain.JobHistory" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="JobHistory" table="JobHistory" lazy="true" >
+    <id name="JobHistoryId" column="JobHistoryId" />
     <property name="PositionId">
       <column name="PositionId" sql-type="int" not-null="true" />
     </property>

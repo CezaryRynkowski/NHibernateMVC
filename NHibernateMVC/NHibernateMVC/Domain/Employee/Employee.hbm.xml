@@ -31,6 +31,10 @@
     <property name="ZipCode">
       <column name="ZipCode" sql-type="varchar" not-null="true" />
     </property>
+    <set name="Projects" inverse="true" table="EmployeeProject" cascade="persist">
+      <key column="EmployeeId"/>
+      <many-to-many column="ProjectId" class="NHibernateMVC.Domain.Project.Project" />
+    </set>
   </class>
 
   <sql-query name="employeeSearchQuery">

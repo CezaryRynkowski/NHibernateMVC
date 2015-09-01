@@ -47,5 +47,7 @@ namespace NHibernateMVC.Models.Employee
         public string Country { get; set; }
 
         public string ZipCode { get; set; }
+
+        public List<Domain.Project.Project> Projects { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿@model NHibernateMVC.Models.Employee.EmployeeViewModel
+﻿@using Castle.Core.Internal
+@model NHibernateMVC.Models.Employee.EmployeeViewModel
 @{
     ViewBag.Title = "Edit";
 }
@@ -107,6 +108,48 @@
             </div>
         </div>
     </fieldset>
-
+    <fieldset>
+        <legend>Projects</legend>
+        @{
+            bool exist = Model.EmployeeForm.Projects.IsNullOrEmpty();
+        }
+        @if (exist)
+        {
+            <div class="span10">
+                <div class="control-group">
+                    <div class="controls">
+                        <div class="alert alert-warning" role="alert">
+                            <p>The employee is not in any project</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (!exist)
+        {
+            <div class="panel panel-default">
+                <table class="table table-bordered table-condensed table-hover" id="ProjectTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Project Name</th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.EmployeeForm.Projects)
+                        {
+                            <tr>
+                                <td>@item.ProjectId</td>
+                                <td>@item.ProjectName</td>
+                                <td><a class="btn btn-mini" href="@Url.Action("Edit", "Project", new { projectId = item.ProjectId })"><i class="glyphicon glyphicon-edit"></i>Edit</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </fieldset>
     <input type="submit" value="Save" class="btn btn-primary" />
 }

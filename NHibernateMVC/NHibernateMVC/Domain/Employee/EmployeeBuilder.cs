@@ -35,6 +35,13 @@ namespace NHibernateMVC.Domain.Employee
         public void UpdateEmployee(Employee employeeToUpdate, EmployeeForm employeeForm)
         {
             employeeToUpdate.FirstName = employeeForm.FirstName;
+            employeeToUpdate.LastName = employeeForm.LastName;
+            employeeToUpdate.BirthDate = employeeForm.BirthDate;
+            employeeToUpdate.City = employeeForm.City;
+            employeeToUpdate.Country = employeeForm.County;
+            employeeToUpdate.Sex = employeeForm.Sex;
+            employeeToUpdate.Street = employeeForm.Street;
+            employeeToUpdate.ZipCode = employeeForm.ZipCode;
         }
     }
 }

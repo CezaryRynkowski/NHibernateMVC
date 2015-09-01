@@ -7,7 +7,7 @@ namespace NHibernateMVC.Models.Employee
 {
     public class EmployeeToModelMapper
     {
-        public static EmployeeForm MapToEnpoyeeForm(Domain.Employee.Employee employee)
+        public static EmployeeForm MapToEnpoyeeForm(Domain.Employee.Employee employee, List<Domain.Project.Project> q)
         {
             return new EmployeeForm
             {
@@ -21,6 +21,9 @@ namespace NHibernateMVC.Models.Employee
               Sex = employee.Sex,
               Street = employee.Street,
               ZipCode = employee.ZipCode,
+              Projects = employee.Projects.ToList(),
+              
+              AllProjects = q.ToList()
             };
         }
 

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="NHibernateMVC" namespace="NHibernateMVC.Domain.Project" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Project" table="Project" lazy="true" >
+    <id name="ProjectId" column="ProjectId">
+      <generator class="guid.comb" />
+    </id>
+    <property name="ProjectName">
+      <column name="ProjectName" sql-type="varchar" not-null="true" />
+    </property>
+    <set name="Employees" table="EmployeeProject">
+      <key column="ProjectId"/>
+      <many-to-many column="EmployeeId" class="NHibernateMVC.Domain.Employee.Employee" />
+    </set>
+  </class>
+  <sql-query name="projectSearchQuery">
+    <![CDATA[
+    select 
+p.ProjectId as ProjectId,
+p.ProjectName as ProjectName
+from Project p
+    ]]>
+  </sql-query>
+</hibernate-mapping>
