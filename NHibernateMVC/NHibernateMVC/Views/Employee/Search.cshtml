@@ -18,6 +18,7 @@
                 @Html.TextBoxFor(m => m.SearchForm.LastName, new { @class = "span2", placeholder = "Last name" })
                 @Html.TextBoxFor(m => m.SearchForm.ManagerId, new { @class = "span2", placeholder = "ManagerId" })
                 @Html.TextBoxFor(m => m.SearchForm.ZipCode, new { @class = "span2", placeholder = "ZipCode" })
+                @Html.DropDownListFor(m=>m.SearchForm.Position, Model.SearchForm.Positions.Select(z=> new SelectListItem { Text=z.Name, Value = z.PositionId.ToString(), Selected = false}),"---SELECT---",new {id = "PositionDownListSelect"})
             </div>
 
             <div class="control-group">

@@ -28,7 +28,15 @@ namespace NHibernateMVC.Models.Project
 
     public class ProjectListItem
     {
-        public Guid ProjectId { get; set; }
-        public string ProjectName { get; set; }
+        public ProjectListItem(Guid projectId, string projectName)
+        {
+            ProjectId = projectId;
+            ProjectName = projectName;
+        }
+
+        public ProjectListItem() { }
+
+        public Guid ProjectId { get; private set; }
+        public string ProjectName { get; private set; }
     }
 }

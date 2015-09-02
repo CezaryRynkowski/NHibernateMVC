@@ -39,10 +39,6 @@ namespace NHibernateMVC.Infrastructure.Web
         protected CommandExecutionResult<T> ExecuteCommand<T>(Command<T> cmd)
         {
                 var cmdResult = CommandRunner.ExecuteCommand(cmd);
-                if (!cmdResult.Success)
-                {
-                    Error(cmdResult.MessageForHumans);
-                }
                 return cmdResult;
         }
 
@@ -101,10 +97,6 @@ namespace NHibernateMVC.Infrastructure.Web
         /// <summary>
         /// Causes bootstrap error message to be rendered
         /// </summary>
-        protected void Error(string message)
-        {
-            //AddMessage(Alerts.ERROR, message);
-        }
 
         /// <summary>
         /// renders bootstrap error for all errors in model state
@@ -119,7 +111,6 @@ namespace NHibernateMVC.Infrastructure.Web
                     errMsg.AppendLine(modelError.ErrorMessage);
                 }
             }
-            //AddMessage(Alerts.ERROR, errMsg.ToString());
         }
     }
 }

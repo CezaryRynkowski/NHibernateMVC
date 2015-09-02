@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using NHibernateMVC.Domain.JobHistory;
 
 namespace NHibernateMVC.Models.Employee
 {
@@ -17,6 +18,11 @@ namespace NHibernateMVC.Models.Employee
         {
             //Criteria = new EmployeeSearchForm();
             Results = new List<EmployeeSearchResultItem>();
+        }
+
+        public EmployeeSearchViewModel(List<NHibernateMVC.Domain.JobHistory.Position> position)
+        {
+            SearchForm = new EmployeeSearchForm {Positions = position};
         }
     }
 }

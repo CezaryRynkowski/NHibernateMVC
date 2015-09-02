@@ -1,4 +1,5 @@
-﻿@model NHibernateMVC.Models.Project.ProjectViewModel
+﻿@using Castle.Core.Internal
+@model NHibernateMVC.Models.Project.ProjectViewModel
 @{
     ViewBag.Title = "Edit";
 }
@@ -29,5 +30,54 @@
         </div>
     </fieldset>
 
-    <input type="submit" value="Save" class="btn btn-primary" />
+    if (Model.ProjectForm.List.IsNullOrEmpty())
+    {
+    <div class="span10">
+        <div class="control-group">
+            <div class="controls">
+                <div class="alert alert-warning" role="alert">
+                    <p>Empty Project</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+    if (!Model.ProjectForm.List.IsNullOrEmpty())
+    {
+    <div class="span12">
+        <div class="panel panel-default">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Employee Name</th>
+                        <th>#</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ProjectForm.List)
+                    {
+                        <tr>
+                            <td>@item.EmployeeId</td>
+                            <td>@item.FirstName @item.LastName</td>
+                            <td>
+                                <a class="btn btn-mini" href="@Url.Action("Edit", "Employee", new {employeeId = @item.EmployeeId})"><i class="glyphicon glyphicon-edit"></i>Edit</a>
+                                <a class="btn btn-mini" href="@Url.Action("DeleteEmployeeFromProject","Project", new {employeeId = item.EmployeeId, projectId = Model.ProjectForm.ProjectId})" onclick="Confirm()"><i class="glyphicon glyphicon-random"></i>Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    }
+    <br />
+    <br />
+    <br />
+    <div class="span 2">
+        <div class="control-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </div>
+    
 }

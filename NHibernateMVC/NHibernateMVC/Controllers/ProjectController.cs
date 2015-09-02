@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using NHibernateMVC.Domain.Project;
+using NHibernateMVC.Models.Employee;
 using NHibernateMVC.Models.Project;
 
 namespace NHibernateMVC.Controllers
@@ -43,14 +41,19 @@ namespace NHibernateMVC.Controllers
             }
 
             var cmdResult = ExecuteCommand(new CreateProjectCommand(projectForm));
-
-            return null;
+            
+            if(cmdResult.Success) return RedirectToAction("Edit","Project", new {projectId=cmdResult.Result});
+            return View(vm);
         }
 
         [HttpGet]
         public ActionResult Edit(Guid projectId)
         {
+            var EmployeeList = Query(new GetEmployeeListQuery());
+            var employeesInProject = Query(new GetEmployeeFromProjectQuery(projectId));
             var vm = new ProjectViewModel(Query(new GetProjectQuery(projectId)));
+            vm.ProjectForm.List = employeesInProject;
+            vm.ProjectForm.EmployeesList = EmployeeList;
             return View(vm);
         }
 
@@ -68,6 +71,12 @@ namespace NHibernateMVC.Controllers
 
             if (cmdResult.Success) return RedirectToAction("Edit", new {projectId = cmdResult.Result});
             return View("Edit", vm);
+        }
+
+        public ActionResult DeleteEmployeeFromProject(Guid employeeId, Guid projectId)
+        {
+            var query = Query(new DeleteEmployeeFromProjectCommand(employeeId, projectId));
+            return RedirectToAction("Edit","Project",new {projectId=projectId});
         }
     }
 }

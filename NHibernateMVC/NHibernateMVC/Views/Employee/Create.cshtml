@@ -1,10 +1,12 @@
 ﻿@using System.Web.Mvc.Html
+@using NHibernate.Linq
+@using NHibernateMVC.Models.Employee
 @model NHibernateMVC.Models.Employee.EmployeeViewModel
 @{
     ViewBag.Title = "Create";
 }
 
-@using (Html.BeginForm("Create", "Employee", FormMethod.Post, new { @class = "form-horizontal" }))
+@using (Html.BeginForm("Create", "Employee", FormMethod.Post, new { @class = "form-horizontal", @id="validator"}))
 {
     <fieldset>
         <legend>Create new Employee</legend>
@@ -22,7 +24,8 @@
                 <div class="control-group">
                     <div class="controls">
                         @Html.Label("Birth date of employee")
-                        @Html.TextBoxFor(m => m.EmployeeForm.BirthDate ,"{0:d}, dt")
+                        @Html.TextBoxFor(m => m.EmployeeForm.BirthDate, "{0:d}, dt")
+                        @Html.ValidationMessageFor(m=>m.EmployeeForm.BirthDate)
                     </div>
                 </div>
             </div>
@@ -33,6 +36,7 @@
                     <div class="controls">
                         @Html.Label("First name of employee")
                         @Html.TextBoxFor(m => m.EmployeeForm.FirstName)
+                        @Html.ValidationMessageFor(m=>m.EmployeeForm.FirstName)
                     </div>
                 </div>
             </div>
@@ -41,6 +45,7 @@
                     <div class="controls">
                         @Html.Label("Last name of employee")
                         @Html.TextBoxFor(m => m.EmployeeForm.LastName)
+                        @Html.ValidationMessageFor(m=>m.EmployeeForm.LastName)
                     </div>
                 </div>
             </div>
@@ -50,7 +55,8 @@
                 <div class="control-group">
                     <div class="controls">
                         @Html.Label("Sex")
-                        @Html.TextBoxFor(m => m.EmployeeForm.Sex)
+                        @Html.DropDownListFor(x => x.EmployeeForm.Sex, Enum.GetNames(typeof(EmployeeForm.SexEnum)).Select(e => new SelectListItem { Text = e, Value = ((int)Enum.Parse(typeof(EmployeeForm.SexEnum), e)).ToString(), Selected = false }), "---SELECT---", new { id = "dropDownList" })
+                        @Html.ValidationMessageFor(m=>m.EmployeeForm.Sex)
                     </div>
                 </div>
             </div>
@@ -59,6 +65,7 @@
                     <div class="controls">
                         @Html.Label("ManagerId")
                         @Html.TextBoxFor(m => m.EmployeeForm.ManagerId)
+                        @Html.ValidationMessageFor(m=>m.EmployeeForm.ManagerId)
                     </div>
                 </div>
             </div>
@@ -77,6 +84,7 @@
                     <div class="controls">
                         @Html.Label("City")
                         @Html.TextBoxFor(m => m.EmployeeForm.City)
+                        @Html.ValidationMessageFor(m=>m.EmployeeForm.City)
                     </div>
                 </div>
             </div>
@@ -85,6 +93,7 @@
                     <div class="controls">
                         @Html.Label("County")
                         @Html.TextBoxFor(m => m.EmployeeForm.County)
+                        @Html.ValidationMessageFor(m=>m.EmployeeForm.County)
                     </div>
                 </div>
             </div>
@@ -95,6 +104,7 @@
                     <div class="controls">
                         @Html.Label("Street")
                         @Html.TextBoxFor(m => m.EmployeeForm.Street)
+                        @Html.ValidationMessageFor(m=>m.EmployeeForm.Street)
                     </div>
                 </div>
             </div>
@@ -103,6 +113,7 @@
                     <div class="controls">
                         @Html.Label("ZipCode")
                         @Html.TextBoxFor(m => m.EmployeeForm.ZipCode)
+                        @Html.ValidationMessageFor(m=>m.EmployeeForm.ZipCode)
                     </div>
                 </div>
             </div>
@@ -111,3 +122,8 @@
     
     <input type="submit" value="Create" class="btn btn-primary" />
 }
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#validator").validator();
+    });
+</script>

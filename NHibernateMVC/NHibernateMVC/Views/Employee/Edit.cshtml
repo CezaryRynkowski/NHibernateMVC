@@ -1,5 +1,6 @@
 ﻿@using Castle.Core.Internal
-@model NHibernateMVC.Models.Employee.EmployeeViewModel
+@using NHibernateMVC.Models.Employee
+@model EmployeeViewModel
 @{
     ViewBag.Title = "Edit";
 }
@@ -50,7 +51,7 @@
                 <div class="control-group">
                     <div class="controls">
                         @Html.Label("Sex")
-                        @Html.TextBoxFor(m => m.EmployeeForm.Sex)
+                        @Html.DropDownListFor(x => x.EmployeeForm.Sex, Enum.GetNames(typeof(EmployeeForm.SexEnum)).Select(e => new SelectListItem { Text = e, Value = ((int)Enum.Parse(typeof(EmployeeForm.SexEnum), e)).ToString()}))
                     </div>
                 </div>
             </div>
@@ -142,7 +143,8 @@
                             <tr>
                                 <td>@item.ProjectId</td>
                                 <td>@item.ProjectName</td>
-                                <td><a class="btn btn-mini" href="@Url.Action("Edit", "Project", new { projectId = item.ProjectId })"><i class="glyphicon glyphicon-edit"></i>Edit</a>
+                                <td>
+                                    <a class="btn btn-mini" href="@Url.Action("Edit", "Project", new {projectId = item.ProjectId})"><i class="glyphicon glyphicon-edit"></i>Edit</a>
                                 </td>
                             </tr>
                         }
@@ -151,5 +153,6 @@
             </div>
         }
     </fieldset>
-    <input type="submit" value="Save" class="btn btn-primary" />
+    <input type="submit" value="Save" class="btn btn-primary"/>
+     <a class="btn btn-info" href="@Url.Action("ShowJobHistory", "JobHistory", new {employeeId = Model.EmployeeForm.EmployeeId})"><i class="glyphicon glyphicon-random"></i>    Job History</a>
 }

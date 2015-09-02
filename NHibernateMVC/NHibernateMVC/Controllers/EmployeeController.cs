@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using NHibernate;
-using NHibernate.Linq;
 using NHibernateMVC.Domain.Employee;
+using NHibernateMVC.Domain.JobHistory;
+using NHibernateMVC.Domain.Project;
+using NHibernateMVC.Infrastructure.Command;
 using NHibernateMVC.Models.Employee;
-using NHibernateMVC.Infrastructure.Web;
-using NHibernateMVC.Infrastructure.Service;
+using NHibernateMVC.Models.Project;
 
 namespace NHibernateMVC.Controllers
 {
@@ -19,8 +17,8 @@ namespace NHibernateMVC.Controllers
 
         public ActionResult Index()
         {
-            return View();
 
+            return View();
         }
 
         [HttpGet]
@@ -35,11 +33,6 @@ namespace NHibernateMVC.Controllers
         {
             var vm = new EmployeeViewModel(employeeForm);
 
-            var errors = ModelState.Where(x => x.Value.Errors.Count > 0)
-                .Select(x => new {x.Key, x.Value.Errors})
-                .ToArray();
-                
-
             if (!ModelState.IsValid)
             {
                 return View(vm);
@@ -48,7 +41,7 @@ namespace NHibernateMVC.Controllers
             var cmdResult = ExecuteCommand(new CreateEmployeeCommand(employeeForm));
 
             if (cmdResult.Success) return RedirectToAction("Edit", new { employeeId = cmdResult.Result });
-            else return View(vm);
+            return View(vm);
         }
 
         [HttpGet]
@@ -76,7 +69,9 @@ namespace NHibernateMVC.Controllers
 
         public ActionResult Search()
         {
-            return View("Search", new EmployeeSearchViewModel());
+            var cmdResults = Query(new GetPositionQuery());
+            EmployeeSearchViewModel searchViewModel = new EmployeeSearchViewModel();
+            return View("Search", new EmployeeSearchViewModel(cmdResults.AllPositions));
         }
 
         [HttpPost]
@@ -87,7 +82,7 @@ namespace NHibernateMVC.Controllers
 
         public ActionResult Delete(Guid employeeId)
         {
-            var cmdResult = ExecuteCommand(new DeleteEmployeeCommand(employeeId));
+            ExecuteCommand(new DeleteEmployeeCommand(employeeId));
             return RedirectToAction("Search", "Employee");
         }
 

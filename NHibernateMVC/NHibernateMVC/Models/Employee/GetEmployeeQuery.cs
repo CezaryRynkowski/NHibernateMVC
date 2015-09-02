@@ -21,7 +21,7 @@ namespace NHibernateMVC.Models.Employee
             var p = session.Get<Domain.Employee.Employee>(employeeId);
 
             var q = session.QueryOver<Domain.Project.Project>()
-                .Where(x => x.ProjectId != null)
+                .Where(x => x.ProjectId!=null)
                 .List<Domain.Project.Project>().ToList();
 
             return EmployeeToModelMapper.MapToEnpoyeeForm(p,q);

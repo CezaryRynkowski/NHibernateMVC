@@ -1,16 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using NHibernateMVC.Domain.JobHistory;
+using NHibernateMVC.Models.JobHistory;
 
 namespace NHibernateMVC.Controllers
 {
     public class JobHistoryController : Infrastructure.Web.ControllerBase
     {
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult ShowJobHistory(Guid employeeId)
         {
-            return null; //View();
+            var vm = new JobHistoryViewModel(Query(new GetJobHistoryQuery(employeeId)));
+            return View(vm);
         }
 
     }

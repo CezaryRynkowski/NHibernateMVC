@@ -15,5 +15,13 @@ namespace NHibernateMVC.Models.Project
                 ProjectName = project.ProjectName
             };
         }
+
+        public static ProjectForm MapToForm(List<Domain.Project.Project> project)
+        {
+            return new ProjectForm
+            {
+                AllProjects = project.ToList()
+            };
+        }
     }
 }

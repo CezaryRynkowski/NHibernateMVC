@@ -18,11 +18,11 @@ namespace NHibernateMVC.Domain.Employee
         public virtual string Country { get; set; }
         public virtual string ZipCode { get; set; }
 
-        public virtual Iesi.Collections.Generic.ISet<Project.Project> Projects { get; set; }
+        public virtual IList<Project.Project> Projects { get; set; }
 
         public Employee()
         {
-            Projects = new HashedSet<Project.Project>();
+            //Projects = new HashedSet<Project.Project>();
         }
 
     }

@@ -7,10 +7,15 @@
     <property name="ProjectName">
       <column name="ProjectName" sql-type="varchar" not-null="true" />
     </property>
-    <set name="Employees" table="EmployeeProject">
+    <!--<set name="Employees" table="EmployeeProject" cascade="none">
       <key column="ProjectId"/>
       <many-to-many column="EmployeeId" class="NHibernateMVC.Domain.Employee.Employee" />
-    </set>
+    </set>-->
+      <bag name="Employees" lazy="true"
+         table="EmployeeProject" cascade="save-update">
+        <key column="ProjectId" />
+        <many-to-many class="NHibernateMVC.Domain.Employee.Employee"  column="EmployeeId"/>
+      </bag>
   </class>
   <sql-query name="projectSearchQuery">
     <![CDATA[
@@ -18,6 +23,30 @@
 p.ProjectId as ProjectId,
 p.ProjectName as ProjectName
 from Project p
+    ]]>
+  </sql-query>
+  <sql-query name="employeFromProject">
+    <![CDATA[
+    select 
+x.EmployeeId as EmployeeId,
+e.FirstName as FirstName,
+e.LastName as LastName
+from Project p
+join EmployeeProject x
+on p.ProjectId = x.ProjectId
+join Employee e
+on x.EmployeeId = e.EmployeeId
+where 
+(:projectId is null or p.ProjectId = :projectId)
+    ]]>
+  </sql-query>
+  <sql-query name="deleteEmployee">
+    <![CDATA[
+    delete from EmployeeProject 
+    where 
+    (EmployeeId = :employee)
+    and
+    (ProjectId = :project)   
     ]]>
   </sql-query>
 </hibernate-mapping>

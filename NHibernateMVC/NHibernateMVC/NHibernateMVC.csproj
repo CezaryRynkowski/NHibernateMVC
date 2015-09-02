@@ -149,8 +149,12 @@
     <Compile Include="Domain\Employee\EmployeeBuilder.cs" />
     <Compile Include="Domain\Employee\EmployeeValidationService.cs" />
     <Compile Include="Domain\Employee\UpdateEmployeeCommand.cs" />
+    <Compile Include="Domain\JobHistory\GetJobHistoryQuery.cs" />
+    <Compile Include="Domain\JobHistory\GetPositionQuery.cs" />
     <Compile Include="Domain\JobHistory\JobHistory.cs" />
+    <Compile Include="Domain\JobHistory\Position.cs" />
     <Compile Include="Domain\Project\CreateProjectCommand.cs" />
+    <Compile Include="Domain\Project\DeleteEmployeeFromProjectCommand.cs" />
     <Compile Include="Domain\Project\Project.cs" />
     <Compile Include="Domain\Project\ProjectBuilder.cs" />
     <Compile Include="Domain\Project\UpdateProjectCommand.cs" />
@@ -178,6 +182,13 @@
     <Compile Include="Models\Employee\EmployeeViewModel.cs" />
     <Compile Include="Models\Employee\GetEmployeeListQuery.cs" />
     <Compile Include="Models\Employee\GetEmployeeQuery.cs" />
+    <Compile Include="Models\JobHistory\JobHistoryForm.cs" />
+    <Compile Include="Models\JobHistory\JobHistoryToModelMapper.cs" />
+    <Compile Include="Models\JobHistory\JobHistoryViewModel.cs" />
+    <Compile Include="Models\JobHistory\PositionModel.cs" />
+    <Compile Include="Models\JobHistory\PositionToModelMapper.cs" />
+    <Compile Include="Models\Project\GetAllProjectsQuery.cs" />
+    <Compile Include="Models\Project\GetEmployeeFromProjectQuery.cs" />
     <Compile Include="Models\Project\GetProjectListQuery.cs" />
     <Compile Include="Models\Project\GetProjectQuery.cs" />
     <Compile Include="Models\Project\ProjectForm.cs" />
@@ -251,6 +262,7 @@
     <EmbeddedResource Include="Domain\Employee\Employee.hbm.xml" />
     <EmbeddedResource Include="Domain\Project\Project.hbm.xml" />
     <EmbeddedResource Include="Domain\JobHistory\JobHistory.hbm.xml" />
+    <EmbeddedResource Include="Domain\JobHistory\Position.hbm.xml" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
@@ -296,9 +308,11 @@
     <Content Include="Views\Project\_ProjectList.cshtml" />
     <Content Include="Views\Project\Create.cshtml" />
     <Content Include="Views\Project\Edit.cshtml" />
+    <Content Include="Views\JobHistory\ShowJobHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Infrastructure\Web\Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

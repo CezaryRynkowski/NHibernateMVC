@@ -31,10 +31,15 @@
     <property name="ZipCode">
       <column name="ZipCode" sql-type="varchar" not-null="true" />
     </property>
-    <set name="Projects" inverse="true" table="EmployeeProject" cascade="persist">
-      <key column="EmployeeId"/>
-      <many-to-many column="ProjectId" class="NHibernateMVC.Domain.Project.Project" />
-    </set>
+   <!--<set name="Projects" inverse="true" table="EmployeeProject" cascade="none">
+     <key column="EmployeeId"/>
+     <many-to-many column="ProjectId" class="NHibernateMVC.Domain.Project.Project" />
+   </set>-->
+    <bag name="Projects" lazy="true"
+         table="EmployeeProject" cascade="save-update">
+      <key column="EmployeeId" />
+      <many-to-many class="NHibernateMVC.Domain.Project.Project"  column="ProjectId"/>
+    </bag>
   </class>
 
   <sql-query name="employeeSearchQuery">
@@ -47,8 +52,13 @@ e.ManagerId as ManagerId,
 e.City as City,
 e.Street as Street,
 e.Country as Country,
-e.ZipCode as ZipCode
+e.ZipCode as ZipCode,
+j.PositionId as PositionId,
+j.StartDate as StartDate,
+j.StopDate as StopDate
 from Employee e
+left JOIN JobHistory j
+on j.EmployeeId = e.EmployeeId
 where 
 (:employeeid is null or e.EmployeeId = :employeeid)
 and
@@ -59,8 +69,12 @@ and
 (:manager is null or e.ManagerId = :manager)
 and
 (:zipcode is null or e.ZipCode = :zipcode)
+and
+(:position is null or j.PositionId = :position and j.StopDate is null)
+and
+(j.StopDate is null)
     ]]>
-  </sql-query>
+</sql-query>
 </hibernate-mapping>
-<!--inner join Manager m 
-on e.EmployeeId = m.EmployeeId-->
+<!--and
+(:position is null or j.PositionId = :position and j.StopDate = null)-->

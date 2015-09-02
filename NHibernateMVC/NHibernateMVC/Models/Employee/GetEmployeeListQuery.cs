@@ -8,7 +8,7 @@ using NHibernateMVC.Infrastructure.Query;
 
 namespace NHibernateMVC.Models.Employee
 {
-    public class GetEmployeeListQuery : Query<IList<EmployeeListItem>>
+    public class GetEmployeeListQuery : Query<List<EmployeeListItem>>
     {
         private readonly EmployeeSearchForm searchForm;
 
@@ -17,7 +17,12 @@ namespace NHibernateMVC.Models.Employee
             this.searchForm = searchForm;
         }
 
-        public override IList<EmployeeListItem> Execute(ISession session)
+        public GetEmployeeListQuery()
+        {
+            searchForm = new EmployeeSearchForm();
+        }
+
+        public override List<EmployeeListItem> Execute(ISession session)
         {
             return session.GetNamedQuery("employeeSearchQuery")
                 .SetParameter("employeeid",searchForm.EmployeeId)
@@ -25,8 +30,9 @@ namespace NHibernateMVC.Models.Employee
                 .SetParameter("lastname", searchForm.LastName)
                 .SetParameter("manager", searchForm.ManagerId)
                 .SetParameter("zipcode",searchForm.ManagerId)
+                .SetParameter("position", searchForm.Position)
                 .SetResultTransformer(Transformers.AliasToBean<EmployeeListItem>())
-                .List<EmployeeListItem>();
+                .List<EmployeeListItem>().ToList();
         }
     }
 
@@ -47,6 +53,12 @@ namespace NHibernateMVC.Models.Employee
         public string Country { get; set; }
 
         public string ZipCode { get; set; }
+
+        public int PositionId { get; set; }
+
+        public DateTime StartDate { get; set; }
+
+        public DateTime? StopDate { get; set; }
 
         public List<Domain.Project.Project> Projects { get; set; }
     }

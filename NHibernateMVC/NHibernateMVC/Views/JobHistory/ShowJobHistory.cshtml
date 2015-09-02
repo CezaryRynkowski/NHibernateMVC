@@ -1,0 +1,48 @@
+﻿@using Castle.Core.Internal
+@model NHibernateMVC.Models.JobHistory.JobHistoryViewModel
+@{
+    ViewBag.Title = "Job History";
+}
+
+<h2>ShowJobHistory</h2>
+@{
+    bool exist = Model.JobHistoryForm.List.IsNullOrEmpty();
+}
+
+@if (!exist)
+{
+  <div class="panel panel-default">
+                <table class="table table-bordered table-condensed table-hover" id="ProjectTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Position</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Salary</th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.JobHistoryForm.List)
+                        {
+                            <tr>
+                                <td>@item.JobHistoryId</td>
+                                <td>@item.PositionId</td>
+                                <td>@item.StartDate</td>
+                                @if (item.StopDate.HasValue)
+                                {
+                                    <td>@item.StopDate</td>
+                                }
+                                @if (!item.StopDate.HasValue)
+                                {
+                                    <td>Present</td>
+                                }
+                                <td>@item.Salary</td>
+                                <td><button>tet</button></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+}
