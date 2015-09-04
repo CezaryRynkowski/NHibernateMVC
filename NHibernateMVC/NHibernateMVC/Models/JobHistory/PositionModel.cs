@@ -8,6 +8,9 @@ namespace NHibernateMVC.Models.JobHistory
 {
     public class PositionModel
     {
+        /// <summary>
+        /// list of all position from db
+        /// </summary>
         public List<Position> AllPositions { get; set; } 
     }
 }

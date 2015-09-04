@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using NHibernate;
 using NHibernateMVC.Infrastructure.Command;
 using NHibernateMVC.Models.Employee;
 
 namespace NHibernateMVC.Domain.Employee
 {
+    /// <summary>
+    /// Updates employee data
+    /// </summary>
     public class UpdateEmployeeCommand : Command<Guid>, INeedSession, INeedAutocommitTransaction
     {
         private readonly EmployeeForm _employeeForm;

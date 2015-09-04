@@ -7,6 +7,10 @@ using NHibernateMVC.Infrastructure.Command;
 
 namespace NHibernateMVC.Infrastructure.IoC
 {
+    /// <summary>
+    /// Installer for infrastructure components
+    /// command runner
+    /// </summary>
     public class InfrastructureInstaller : IWindsorInstaller
     {
         public void Install(Castle.Windsor.IWindsorContainer container,

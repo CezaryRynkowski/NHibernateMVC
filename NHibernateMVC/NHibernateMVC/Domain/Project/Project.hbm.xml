@@ -49,4 +49,10 @@ where
     (ProjectId = :project)   
     ]]>
   </sql-query>
+  <sql-query name="addEmployee">
+    <![CDATA[
+    insert into EmployeeProject
+    values (:employee,:project)
+    ]]>
+  </sql-query>
 </hibernate-mapping>

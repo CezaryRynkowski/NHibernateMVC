@@ -8,11 +8,23 @@ using NHibernateMVC.Models.Employee;
 
 namespace NHibernateMVC.Domain.Employee
 {
+    /// <summary>
+    /// Class responsible for creation of employee entities
+    /// </summary>
     public class EmployeeBuilder : BusinessService
     {
+        /// <summary>
+        /// Consctruct new instance of employee builder
+        /// </summary>
+        /// <param name="session">NHibernate session</param>
         public EmployeeBuilder(ISession session)
             :base(session) { }
 
+        /// <summary>
+        /// Construct new employee out of form data
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
         public Employee ConstructEmployee(EmployeeForm form)
         {
             var e = new Employee
@@ -20,28 +32,33 @@ namespace NHibernateMVC.Domain.Employee
                 FirstName = form.FirstName,
                 LastName = form.LastName,
                 BirthDate = form.BirthDate,
-                City = form.City,
-                Country = form.County,
-                Street = form.Street,
                 Sex = form.Sex,
                 EmployeeId = form.EmployeeId,
-                ManagerId = form.ManagerId,
-                ZipCode = form.ZipCode
             };
+            e.Address.City = form.City;
+            e.Address.Country = form.City;
+            e.Address.Street = form.Street;
+            e.Address.ZipCode = form.ZipCode;
+            e.Manager.ManagerId = form.ManagerId;
 
             return e;
         }
 
+        /// <summary>
+        /// Updates employee with data from the web form
+        /// </summary>
+        /// <param name="employeeToUpdate">employee entity from db</param>
+        /// <param name="employeeForm">data entered on web form</param>
         public void UpdateEmployee(Employee employeeToUpdate, EmployeeForm employeeForm)
         {
             employeeToUpdate.FirstName = employeeForm.FirstName;
             employeeToUpdate.LastName = employeeForm.LastName;
             employeeToUpdate.BirthDate = employeeForm.BirthDate;
-            employeeToUpdate.City = employeeForm.City;
-            employeeToUpdate.Country = employeeForm.County;
+            employeeToUpdate.Address.City = employeeForm.City;
+            employeeToUpdate.Address.Country = employeeForm.County;
             employeeToUpdate.Sex = employeeForm.Sex;
-            employeeToUpdate.Street = employeeForm.Street;
-            employeeToUpdate.ZipCode = employeeForm.ZipCode;
+            employeeToUpdate.Address.Street = employeeForm.Street;
+            employeeToUpdate.Address.ZipCode = employeeForm.ZipCode;
         }
     }
 }

@@ -16,7 +16,11 @@ namespace NHibernateMVC.Models.Project
         {
             this.searchForm = searchForm;
         }
-
+        /// <summary>
+        /// executes query
+        /// </summary>
+        /// <param name="session"></param>
+        /// <returns></returns>
         public override IList<ProjectListItem> Execute(ISession session)
         {
             return session.GetNamedQuery("projectSearchQuery")

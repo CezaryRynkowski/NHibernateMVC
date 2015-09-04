@@ -8,6 +8,9 @@ using Castle.Windsor;
 
 namespace NHibernateMVC.Infrastructure.IoC
 {
+    /// <summary>
+    /// Controller Factory class for instantiating controllers using the Windsor
+    /// </summary>
     public class WindsorControllerFactory : DefaultControllerFactory
     {
         private IWindsorContainer _container;

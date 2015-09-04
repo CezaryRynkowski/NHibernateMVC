@@ -1,0 +1,43 @@
+﻿@model NHibernateMVC.Models.JobHistory.JobHistoryViewModel
+@{
+    ViewBag.Title = "Create";
+}
+
+@using(Html.BeginForm("Create","JobHistory", FormMethod.Post, new {@class="form-horizontal"}))
+{
+    <fieldset>
+        <legend>Add position</legend>
+
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="control-group">
+                    <div class="controls">
+                        @Html.Label("EmployeeId")
+                        @Html.TextBoxFor(m => m.JobHistoryForm.EmployeeId)
+                    </div>
+                </div>
+            </div>
+            <div class="span6">
+                <div class="control-group">
+                    <div class="controls">
+                        @Html.Label("PositionId")
+                        @Html.DropDownListFor(x => x.JobHistoryForm.PositionId, Model.PositionModel.AllPositions.Select(z => new SelectListItem {Text = z.Name, Value = z.PositionId.ToString(), Selected = false}), "---SELECT---", new {id = "NewPositionDropDownList"})
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="control-group">
+                    <div class="controls">
+                        @Html.Label("Salary")
+                        @Html.TextBoxFor(m => m.JobHistoryForm.Salary)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <input type="submit" class="btn btn-success" value="Add"/>
+}
+@*    @Html.DropDownListFor(x => x.JobHistoryForm.Positions, Model.PositionModel.AllPositions.Select(z => new SelectListItem { Text = z.Name, Value = z.PositionId.ToString(), Selected = false }), "---SELECT---", new { id = "NewPositionDropDownList" })
+*@

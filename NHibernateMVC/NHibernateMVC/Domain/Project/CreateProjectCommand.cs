@@ -10,6 +10,9 @@ using NHibernateMVC.Models.Project;
 
 namespace NHibernateMVC.Domain.Project
 {
+    /// <summary>
+    /// create 
+    /// </summary>
     public class CreateProjectCommand : Command<Guid>, INeedSession, INeedAutocommitTransaction
     {
         private ProjectForm ProjectForm;
@@ -19,7 +22,10 @@ namespace NHibernateMVC.Domain.Project
         {
             this.ProjectForm = projectForm;
         }
-
+        /// <summary>
+        /// Executes query
+        /// </summary>
+        /// <returns></returns>
         public override Guid Execute()
         {
             ProjectBuilder builder = new ProjectBuilder(Session);

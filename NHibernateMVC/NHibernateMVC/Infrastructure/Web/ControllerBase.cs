@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using Castle.Windsor;
 using NHibernate;
@@ -25,12 +21,7 @@ namespace NHibernateMVC.Infrastructure.Web
         /// </summary>
         protected CommandRunner CommandRunner
         {
-            get
-            {
-                if (commandRunner == null)
-                    commandRunner = Container.Resolve<CommandRunner>();
-                return commandRunner;
-            }
+            get { return commandRunner ?? (commandRunner = Container.Resolve<CommandRunner>()); }
         }
 
         /// <summary>
@@ -69,35 +60,6 @@ namespace NHibernateMVC.Infrastructure.Web
                 TempData[msgType] = new List<string> {msg};
             }
         }
-
-        /// <summary>
-        /// Causes bootstrap attention message to be rendered
-        /// </summary>
-        protected void Attention(string message)
-        {
-            //AddMessage(Alerts.ATTENTION, message);
-        }
-
-        /// <summary>
-        /// Causes bootstrap success message to be rendered
-        /// </summary>
-        protected void Success(string message)
-        {
-            //AddMessage(Alerts.SUCCESS, message);
-        }
-
-        /// <summary>
-        /// Causes bootstrap information message to be rendered
-        /// </summary>
-        protected void Information(string message)
-        {
-            //AddMessage(Alerts.INFORMATION, message);
-        }
-
-        /// <summary>
-        /// Causes bootstrap error message to be rendered
-        /// </summary>
-
         /// <summary>
         /// renders bootstrap error for all errors in model state
         /// </summary>

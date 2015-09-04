@@ -8,21 +8,25 @@ namespace NHibernateMVC.Models.Employee
 {
     public class EmployeeSearchViewModel
     {
+        /// <summary>
+        /// employee search form
+        /// </summary>
         public EmployeeSearchForm SearchForm { get; set; }
-
-        //public EmployeeSearchForm Criteria { get; set; }
-
-        public IList<EmployeeSearchResultItem> Results { get; set; }
-
+        /// <summary>
+        /// results query
+        /// </summary>
+        private IList<EmployeeSearchResultItem> Results { get; set; }
+        /// <summary>
+        /// constructor
+        /// </summary>
         public EmployeeSearchViewModel()
         {
-            //Criteria = new EmployeeSearchForm();
             Results = new List<EmployeeSearchResultItem>();
         }
 
-        public EmployeeSearchViewModel(List<NHibernateMVC.Domain.JobHistory.Position> position)
+        public EmployeeSearchViewModel(List<NHibernateMVC.Domain.JobHistory.Position> position, List<Domain.Project.Project> projects )
         {
-            SearchForm = new EmployeeSearchForm {Positions = position};
+            SearchForm = new EmployeeSearchForm {Positions = position, AllProjects = projects};
         }
     }
 }

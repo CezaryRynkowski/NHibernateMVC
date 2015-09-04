@@ -15,9 +15,11 @@ using NHibernate.Dialect;
 
 namespace NHibernateMVC.Infrastructure.Installers
 {
+    /// <summary>
+    /// Installer for NHibernate, registers session factory and session in container
+    /// </summary>
     public class NHibernateInstaller : IWindsorInstaller
     {
-
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(

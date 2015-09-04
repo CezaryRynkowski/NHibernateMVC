@@ -9,16 +9,25 @@ using NHibernateMVC.Models.Project;
 
 namespace NHibernateMVC.Domain.Project
 {
+    /// <summary>
+    /// Updates project data
+    /// </summary>
     public class UpdateProjectCommand : Command<Guid>, INeedSession, INeedAutocommitTransaction
     {
         private readonly ProjectForm _projectForm;
         private ProjectBuilder _projectBuilder;
-
+        /// <summary>
+        /// constructor
+        /// </summary>
+        /// <param name="projectForm"></param>
         public UpdateProjectCommand(ProjectForm projectForm)
         {
             _projectForm = projectForm;
         }
-
+        /// <summary>
+        /// Executes query
+        /// </summary>
+        /// <returns></returns>
         public override Guid Execute()
         {
             ProjectBuilder builder = new ProjectBuilder(Session);

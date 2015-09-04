@@ -17,7 +17,11 @@ namespace NHibernateMVC.Models.Project
         {
             _projectId = projectId;
         }
-
+        /// <summary>
+        /// executes query
+        /// </summary>
+        /// <param name="session"></param>
+        /// <returns></returns>
         public override List<EmployeeFromProjectListItem> Execute(ISession session)
         {
             return session.GetNamedQuery("employeFromProject")

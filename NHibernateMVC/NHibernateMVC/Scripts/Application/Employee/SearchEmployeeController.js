@@ -6,7 +6,7 @@
         evt.returnValue = false;
         var $form = $(evt.target);
         $.post($form.attr('action'),$form.serialize(), function(data) {
-            $('#employeeSearchResults').html(data);
+            $('#employeeSearchResults').append(data);
         });
     }
 

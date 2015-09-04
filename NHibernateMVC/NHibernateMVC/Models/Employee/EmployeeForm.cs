@@ -96,22 +96,5 @@ namespace NHibernateMVC.Models.Employee
         /// empty constructor
         /// </summary>
         public EmployeeForm() { }
-
-        public class EmployeeInfoViewModel
-        {
-            public Guid EmployeeId { get; set; }
-            public string FirstName { get; set; }
-            public string LastName { get; set; }
-            public DateTime BirthDate { get; set; }
-            public int Sex { get; set; }
-            public Guid? ManagerId { get; set; }
-            public string City { get; set; }
-            public string Street { get; set; }
-            public string County { get; set; }
-            public string ZipCode { get; set; }
-            public List<Domain.Project.Project> Projects { get; set; } 
-        }
-    }
-
-    
+    }  
 }

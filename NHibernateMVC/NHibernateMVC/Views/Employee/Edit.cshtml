@@ -8,7 +8,7 @@
 @using (Html.BeginForm("Update", "Employee", FormMethod.Post, new { @class = "form-horizontal" }))
 {
     <fieldset>
-        <legend>Create new Employee</legend>
+        <legend>Edit Employee</legend>
 
         <div class="row-fluid">
             <div class="span6">
@@ -51,7 +51,7 @@
                 <div class="control-group">
                     <div class="controls">
                         @Html.Label("Sex")
-                        @Html.DropDownListFor(x => x.EmployeeForm.Sex, Enum.GetNames(typeof(EmployeeForm.SexEnum)).Select(e => new SelectListItem { Text = e, Value = ((int)Enum.Parse(typeof(EmployeeForm.SexEnum), e)).ToString()}))
+                        @Html.DropDownListFor(x => x.EmployeeForm.Sex, Enum.GetNames(typeof(EmployeeForm.SexEnum)).Select(e => new SelectListItem { Text = e, Value = ((int)Enum.Parse(typeof(EmployeeForm.SexEnum), e)).ToString() }))
                     </div>
                 </div>
             </div>
@@ -112,7 +112,7 @@
     <fieldset>
         <legend>Projects</legend>
         @{
-            bool exist = Model.EmployeeForm.Projects.IsNullOrEmpty();
+    bool exist = Model.EmployeeForm.Projects.IsNullOrEmpty();
         }
         @if (exist)
         {
@@ -128,31 +128,33 @@
         }
         @if (!exist)
         {
-            <div class="panel panel-default">
-                <table class="table table-bordered table-condensed table-hover" id="ProjectTable">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Project Name</th>
-                            <th>#</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.EmployeeForm.Projects)
-                        {
+            <div class="span12">
+                <div class="panel panel-default">
+                    <table class="table table-bordered table-condensed table-hover" id="ProjectTable">
+                        <thead>
                             <tr>
-                                <td>@item.ProjectId</td>
-                                <td>@item.ProjectName</td>
-                                <td>
-                                    <a class="btn btn-mini" href="@Url.Action("Edit", "Project", new {projectId = item.ProjectId})"><i class="glyphicon glyphicon-edit"></i>Edit</a>
-                                </td>
+                                <th>ID</th>
+                                <th>Project Name</th>
+                                <th>#</th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.EmployeeForm.Projects)
+                            {
+                                <tr>
+                                    <td>@item.ProjectId</td>
+                                    <td>@item.ProjectName</td>
+                                    <td>
+                                        <a class="btn btn-mini" href="@Url.Action("Edit", "Project", new { projectId = item.ProjectId })"><i class="glyphicon glyphicon-edit"></i>Edit</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         }
     </fieldset>
-    <input type="submit" value="Save" class="btn btn-primary"/>
-     <a class="btn btn-info" href="@Url.Action("ShowJobHistory", "JobHistory", new {employeeId = Model.EmployeeForm.EmployeeId})"><i class="glyphicon glyphicon-random"></i>    Job History</a>
+    <input type="submit" value="Save" class="btn btn-primary" />
+    <a class="btn btn-info" href="@Url.Action("ShowJobHistory", "JobHistory", new { employeeId = Model.EmployeeForm.EmployeeId })"><i class="glyphicon glyphicon-random"></i>Job History</a>
 }

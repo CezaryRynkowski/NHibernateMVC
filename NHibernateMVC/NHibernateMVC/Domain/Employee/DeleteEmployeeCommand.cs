@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Castle.Windsor;
 using NHibernateMVC.Infrastructure.Command;
 
@@ -9,17 +6,21 @@ namespace NHibernateMVC.Domain.Employee
 {
     public class DeleteEmployeeCommand : Command<Employee>, INeedSession, INeedAutocommitTransaction
     {
-        private readonly Guid employeeId;
-        private EmployeeBuilder employeeBuilder;
+        private readonly Guid _employeeId;
+        private EmployeeBuilder _employeeBuilder;
 
         public DeleteEmployeeCommand(Guid employeeId)
         {
-            this.employeeId = employeeId;
+            _employeeId = employeeId;
         }
-
+        /// <summary>
+        /// Executes query
+        /// </summary>
+        /// <returns></returns>
         public override Employee Execute()
         {
-            var employee = Session.Get<Employee>(employeeId);
+            //construct entity
+            var employee = Session.Get<Employee>(_employeeId);
             Session.Delete(employee);
             return employee;
         }
@@ -28,7 +29,7 @@ namespace NHibernateMVC.Domain.Employee
 
         public override void SetupDependencies(IWindsorContainer container)
         {
-            this.employeeBuilder = container.Resolve<EmployeeBuilder>();
+            _employeeBuilder = container.Resolve<EmployeeBuilder>();
         }
     }
 }

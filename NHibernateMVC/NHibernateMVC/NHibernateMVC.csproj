@@ -143,16 +143,22 @@
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Data\Dao.cs" />
     <Compile Include="Data\Interfaces.cs" />
+    <Compile Include="Domain\Employee\Address.cs" />
     <Compile Include="Domain\Employee\CreateEmployeeCommand.cs" />
     <Compile Include="Domain\Employee\DeleteEmployeeCommand.cs" />
     <Compile Include="Domain\Employee\Employee.cs" />
     <Compile Include="Domain\Employee\EmployeeBuilder.cs" />
     <Compile Include="Domain\Employee\EmployeeValidationService.cs" />
+    <Compile Include="Domain\Employee\Manager.cs" />
     <Compile Include="Domain\Employee\UpdateEmployeeCommand.cs" />
+    <Compile Include="Domain\JobHistory\ChangePosition.cs" />
+    <Compile Include="Domain\JobHistory\CreateJobHistoryCommand.cs" />
     <Compile Include="Domain\JobHistory\GetJobHistoryQuery.cs" />
     <Compile Include="Domain\JobHistory\GetPositionQuery.cs" />
     <Compile Include="Domain\JobHistory\JobHistory.cs" />
+    <Compile Include="Domain\JobHistory\JobHistoryBuilder.cs" />
     <Compile Include="Domain\JobHistory\Position.cs" />
+    <Compile Include="Domain\Project\AddEmployeeToProjectCommand.cs" />
     <Compile Include="Domain\Project\CreateProjectCommand.cs" />
     <Compile Include="Domain\Project\DeleteEmployeeFromProjectCommand.cs" />
     <Compile Include="Domain\Project\Project.cs" />
@@ -163,10 +169,8 @@
     </Compile>
     <Compile Include="Infrastructure\Command\Command.cs" />
     <Compile Include="Infrastructure\Command\CommandRunner.cs" />
-    <Compile Include="Infrastructure\ExtensionMethods\SqlWilcardStringExtensions.cs" />
     <Compile Include="Infrastructure\Installers\ControllerInstaller.cs" />
     <Compile Include="Infrastructure\Installers\DaoInstaller.cs" />
-    <Compile Include="Infrastructure\Installers\LoggingInstaller.cs" />
     <Compile Include="Infrastructure\Installers\NHibernateInstaller.cs" />
     <Compile Include="Infrastructure\IoC\InfrastructureInstaller.cs" />
     <Compile Include="Infrastructure\IoC\WindsorControllerFactory.cs" />
@@ -268,6 +272,7 @@
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\Application\Employee\SearchEmployeeController.js" />
     <Content Include="Scripts\Application\Employee\SelectEmployeeController.js" />
+    <Content Include="Scripts\Application\Project\SearchProjectController.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -309,10 +314,10 @@
     <Content Include="Views\Project\Create.cshtml" />
     <Content Include="Views\Project\Edit.cshtml" />
     <Content Include="Views\JobHistory\ShowJobHistory.cshtml" />
+    <Content Include="Views\JobHistory\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Infrastructure\Web\Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -3,29 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using NHibernate;
-using NHibernateMVC.Infrastructure.Command;
 using NHibernateMVC.Infrastructure.Query;
 
 namespace NHibernateMVC.Domain.Project
 {
-    public class DeleteEmployeeFromProjectCommand : Query<Domain.Project.Project>
+    /// <summary>
+    /// add employee to project
+    /// </summary>
+    public class AddEmployeeToProjectCommand : Query<Project>
     {
         private readonly Guid _employeeId;
         private readonly Guid _projectId;
 
-        public DeleteEmployeeFromProjectCommand(Guid employeeId, Guid projectId)
+        public AddEmployeeToProjectCommand(Guid employeeId, Guid projectId)
         {
             _employeeId = employeeId;
             _projectId = projectId;
         }
         /// <summary>
-        /// execites query
+        /// Executes query
         /// </summary>
         /// <param name="session"></param>
         /// <returns></returns>
         public override Project Execute(ISession session)
         {
-             session.GetNamedQuery("deleteEmployee")
+            session.GetNamedQuery("addEmployee")
                 .SetParameter("employee", _employeeId)
                 .SetParameter("project", _projectId)
                 .UniqueResult();

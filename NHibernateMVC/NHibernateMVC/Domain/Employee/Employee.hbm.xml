@@ -16,25 +16,25 @@
     <property name="Sex">
       <column name="Sex" sql-type="int" not-null="true" />
     </property>
-    <property name="ManagerId">
-      <column name="ManagerId" sql-type="uniqueidentifier" not-null="false" />
-    </property>
-    <property name="City">
-      <column name="City" sql-type="varchar" not-null="true" />
-    </property>
-    <property name="Street">
-      <column name="Street" sql-type="varchar" not-null="true" />
-    </property>
-    <property name="Country">
-      <column name="Country" sql-type="varchar" not-null="true" />
-    </property>
-    <property name="ZipCode">
-      <column name="ZipCode" sql-type="varchar" not-null="true" />
-    </property>
-   <!--<set name="Projects" inverse="true" table="EmployeeProject" cascade="none">
-     <key column="EmployeeId"/>
-     <many-to-many column="ProjectId" class="NHibernateMVC.Domain.Project.Project" />
-   </set>-->
+    <component name="Manager">
+      <property name="ManagerId">
+        <column name="ManagerId" sql-type="uniqueidentifier" not-null="false" />
+      </property>
+    </component>
+    <component name="Address">
+      <property name="City">
+        <column name="City" sql-type="varchar" not-null="true" />
+      </property>
+      <property name="Street">
+        <column name="Street" sql-type="varchar" not-null="true" />
+      </property>
+      <property name="Country">
+        <column name="Country" sql-type="varchar" not-null="true" />
+      </property>
+      <property name="ZipCode">
+        <column name="ZipCode" sql-type="varchar" not-null="true" />
+      </property>
+    </component>
     <bag name="Projects" lazy="true"
          table="EmployeeProject" cascade="save-update">
       <key column="EmployeeId" />
@@ -55,14 +55,17 @@ e.Country as Country,
 e.ZipCode as ZipCode,
 j.PositionId as PositionId,
 j.StartDate as StartDate,
-j.StopDate as StopDate
+j.StopDate as StopDate,
+p.ProjectId as ProjectId
 from Employee e
 left JOIN JobHistory j
 on j.EmployeeId = e.EmployeeId
+join EmployeeProject p 
+on p.EmployeeId = e.EmployeeId
 where 
 (:employeeid is null or e.EmployeeId = :employeeid)
 and
-(:firstname is null or e.FirstName = :firstname)
+(:firstname is null or e.FirstName = :firstname)a
 and
 (:lastname is null or e.LastName = :lastname)
 and
@@ -70,11 +73,13 @@ and
 and
 (:zipcode is null or e.ZipCode = :zipcode)
 and
-(:position is null or j.PositionId = :position and j.StopDate is null)
+(:position is null or j.PositionId = :position)
 and
 (j.StopDate is null)
+and
+(:project is null or p.ProjectId = :project)
     ]]>
-</sql-query>
+  </sql-query>
 </hibernate-mapping>
 <!--and
 (:position is null or j.PositionId = :position and j.StopDate = null)-->

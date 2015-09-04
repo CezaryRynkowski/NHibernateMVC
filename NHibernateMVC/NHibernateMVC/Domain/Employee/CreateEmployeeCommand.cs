@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Castle.Windsor;
 using NHibernateMVC.Infrastructure.Command;
 using NHibernateMVC.Models.Employee;
@@ -10,20 +7,24 @@ namespace NHibernateMVC.Domain.Employee
 {
     public class CreateEmployeeCommand : Command<Guid>, INeedSession, INeedAutocommitTransaction
     {
-        private EmployeeForm employeeForm;
-        private EmployeeBuilder employeeBuilder;
-        private EmployeeValidationService employeeValidationService;
+        private readonly EmployeeForm _employeeForm;
+        private EmployeeBuilder _employeeBuilder;
+        private EmployeeValidationService _employeeValidationService;
 
         public CreateEmployeeCommand(EmployeeForm employeeForm)
         {
-            this.employeeForm = employeeForm;
+            _employeeForm = employeeForm;
         }
 
+        /// <summary>
+        /// Executes query
+        /// </summary>
+        /// <returns></returns>
         public override Guid Execute()
         {
             EmployeeBuilder builder = new EmployeeBuilder(Session);
             //construct entity
-            var employee = builder.ConstructEmployee(employeeForm);
+            var employee = builder.ConstructEmployee(_employeeForm);
             Session.Save(employee);
 
             return employee.EmployeeId;
@@ -33,8 +34,8 @@ namespace NHibernateMVC.Domain.Employee
 
         public override void SetupDependencies(IWindsorContainer container)
         {
-            employeeBuilder = container.Resolve<EmployeeBuilder>();
-            employeeValidationService = container.Resolve<EmployeeValidationService>();
+            _employeeBuilder = container.Resolve<EmployeeBuilder>();
+            _employeeValidationService = container.Resolve<EmployeeValidationService>();
         }
     }
 }

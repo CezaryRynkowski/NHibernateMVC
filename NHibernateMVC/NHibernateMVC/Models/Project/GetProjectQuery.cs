@@ -15,7 +15,11 @@ namespace NHibernateMVC.Models.Project
         {
             this.projectId = projectId;
         }
-
+        /// <summary>
+        /// executes query
+        /// </summary>
+        /// <param name="session"></param>
+        /// <returns></returns>
         public override ProjectForm Execute(ISession session)
         {
             var p = session.Get<Domain.Project.Project>(projectId);

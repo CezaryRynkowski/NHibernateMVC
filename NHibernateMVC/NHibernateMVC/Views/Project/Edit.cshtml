@@ -7,7 +7,7 @@
 @using (Html.BeginForm("Update", "Project", FormMethod.Post, new { @class = "form-horizontal" }))
 {
     <fieldset>
-        <legend>Create new Project</legend>
+        <legend>Edit Project</legend>
         <div class="row-fluid">
             <div class="span12">
                 <div class="control-group">
@@ -30,6 +30,23 @@
         </div>
     </fieldset>
 
+    <fieldset>
+        <legend>Employees in the project</legend>
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="control-group">
+                    <div class="controls">
+                        @Html.Label("Employee")
+                        @Html.DropDownListFor(x => x.ProjectForm.EmployeeGuidToDb, Model.ProjectForm.EmployeesList.Select(z => new SelectListItem { Text = z.FirstName + " " + z.LastName, Value = z.EmployeeId.ToString(), Selected = false }), "---SELECT---", new { id = "EmplyoeeDownListSelect" })
+                        <div id="addBtn">
+                            <input class="btn btn-info" type="button" id="btnClick" value="Add"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    
     if (Model.ProjectForm.List.IsNullOrEmpty())
     {
     <div class="span10">
@@ -61,8 +78,8 @@
                             <td>@item.EmployeeId</td>
                             <td>@item.FirstName @item.LastName</td>
                             <td>
-                                <a class="btn btn-mini" href="@Url.Action("Edit", "Employee", new {employeeId = @item.EmployeeId})"><i class="glyphicon glyphicon-edit"></i>Edit</a>
-                                <a class="btn btn-mini" href="@Url.Action("DeleteEmployeeFromProject","Project", new {employeeId = item.EmployeeId, projectId = Model.ProjectForm.ProjectId})" onclick="Confirm()"><i class="glyphicon glyphicon-random"></i>Delete</a>
+                                <a class="btn btn-mini" href="@Url.Action("Edit", "Employee", new { employeeId = @item.EmployeeId })"><i class="glyphicon glyphicon-edit"></i>Edit</a>
+                                <a class="btn btn-mini" href="@Url.Action("DeleteEmployeeFromProject", "Project", new { employeeId = item.EmployeeId, projectId = Model.ProjectForm.ProjectId })" ><i class="glyphicon glyphicon-random"></i>Delete</a>
                             </td>
                         </tr>
                     }
@@ -81,3 +98,25 @@
     </div>
     
 }
+
+<script type="text/javascript">
+    $("#btnClick").click(function() {
+        var value = $('#EmplyoeeDownListSelect').val();
+        $.ajax({
+            url: "@Url.Action("AddEmplyoeeToProject","Project")",
+            type: "GET",
+            data:
+            {
+                employeeId: value,
+                projectId: "@Model.ProjectForm.ProjectId"
+            },
+            success: function () {
+                location.reload();
+            },
+            error: function (xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+                alert(err.Message);
+            }
+        });
+    })
+</script>

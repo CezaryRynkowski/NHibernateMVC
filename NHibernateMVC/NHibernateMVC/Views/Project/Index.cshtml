@@ -4,14 +4,14 @@
 }
 
 <div class="span9" id="policySearch">
-    @using (Html.BeginForm("Find", "Project", FormMethod.Post, new { id = "EmployeeSearchForm" }))
+    @using (Html.BeginForm("Find", "Project", FormMethod.Post, new {id = "ProjectSearchForm"}))
     {
         @Html.Hidden("isModal", true)
         <fieldset>
-            <legend>Search Employee</legend>
+            <legend>Search Project</legend>
 
             <div class="controls">
-                @Html.TextBoxFor(m => m.SearchForm.ProjectName, new { @class = "span3", placeholder = "Employee number" })
+                @Html.TextBoxFor(m => m.SearchForm.ProjectName, new {@class = "span3", placeholder = "Employee number"})
             </div>
             <div class="control-group">
                 <button type="submit" class="btn btn-primary pull-right">Search</button>
@@ -19,9 +19,17 @@
         </fieldset>
     }
     <div class="control-group">
-        <a class="btn btn-info" href="@Url.Action("Create", "Project")">Create new Employee</a>
+        <a class="btn btn-info" href="@Url.Action("Create", "Project")">Create new Project</a>
     </div>
-    <div id="#employeeSearchResults" class="span6">
+    <div id="projectSearchResults" class="span12">
     </div>
 
 </div>
+<script type="text/javascript" src="/Scripts/Application/Project/SearchProjectController.js"></script>
+<script type="text/javascript">
+    //init controller
+    $(function() {
+        var ctrl = new SearchProjectController();
+        ctrl.init();
+    })
+</script>

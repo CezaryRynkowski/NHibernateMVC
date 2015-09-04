@@ -1,48 +1,77 @@
 ﻿@using Castle.Core.Internal
+@using Microsoft.Ajax.Utilities
 @model NHibernateMVC.Models.JobHistory.JobHistoryViewModel
 @{
     ViewBag.Title = "Job History";
 }
 
-<h2>ShowJobHistory</h2>
+<h2>Job History</h2>
+
 @{
     bool exist = Model.JobHistoryForm.List.IsNullOrEmpty();
+    Model.JobHistoryForm.JobHistoryId = Guid.NewGuid();
 }
 
 @if (!exist)
 {
-  <div class="panel panel-default">
-                <table class="table table-bordered table-condensed table-hover" id="ProjectTable">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Position</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
-                            <th>Salary</th>
-                            <th>#</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.JobHistoryForm.List)
+
+    <div class="panel panel-default">
+        <table class="table table-bordered table-condensed table-hover" id="ProjectTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Position</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Salary</th>
+                    <th>#</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.JobHistoryForm.List)
+                {
+                    <tr>
+                        <td>@item.JobHistoryId</td>
+                        <td>@item.PositionId</td>
+                        <td>@item.StartDate</td>
+                        @if (item.StopDate.HasValue)
                         {
-                            <tr>
-                                <td>@item.JobHistoryId</td>
-                                <td>@item.PositionId</td>
-                                <td>@item.StartDate</td>
-                                @if (item.StopDate.HasValue)
-                                {
-                                    <td>@item.StopDate</td>
-                                }
-                                @if (!item.StopDate.HasValue)
-                                {
-                                    <td>Present</td>
-                                }
-                                <td>@item.Salary</td>
-                                <td><button>tet</button></td>
-                            </tr>
+                            <td>@item.StopDate</td>
                         }
-                    </tbody>
-                </table>
-            </div>
+                        @if (!item.StopDate.HasValue)
+                        {
+                            <td>Present</td>
+                        }
+                        <td>@item.Salary</td>
+                        @if (!item.StopDate.HasValue)
+                        {
+                            <td>
+                                <a class="btn" href="@Url.Action("ChangePositon","JobHistory", new {jobHistoryId = item.JobHistoryId})">End</a>
+                            </td>
+                        }
+                        @if (item.StopDate.HasValue)
+                        {
+                            <td></td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 }
+@if (exist)
+{
+    <div class="span10">
+        <div class="control-group">
+            <div class="controls">
+                <div class="alert alert-error" role="alert">
+                    <p>Empty Project</p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <a class="btn btn-info" href="@Url.Action("Create","JobHistory")">Add new position</a>
+</div>

@@ -5,22 +5,31 @@ using System.Web;
 
 namespace NHibernateMVC.Models.Employee
 {
+    /// <summary>
+    /// Maps policies to model instances
+    /// </summary>
     public class EmployeeToModelMapper
     {
+        /// <summary>
+        /// Maps policy entity to employee form model
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <param name="q"></param>
+        /// <returns></returns>
         public static EmployeeForm MapToEnpoyeeForm(Domain.Employee.Employee employee, List<Domain.Project.Project> q)
         {
             return new EmployeeForm
             {
               EmployeeId  = employee.EmployeeId,
               BirthDate = employee.BirthDate,
-              City = employee.City,
-              County = employee.City,
+              City = employee.Address.City,
+              County = employee.Address.City,
               FirstName = employee.FirstName,
               LastName = employee.LastName,
-              ManagerId = employee.ManagerId,
+              ManagerId = employee.Manager.ManagerId,
               Sex = employee.Sex,
-              Street = employee.Street,
-              ZipCode = employee.ZipCode,
+              Street = employee.Address.Street,
+              ZipCode = employee.Address.ZipCode,
               Projects = employee.Projects.ToList(),
               
               AllProjects = q.ToList()

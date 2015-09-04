@@ -35,7 +35,7 @@ namespace NHibernateMVC.Infrastructure.Service
         /// <summary>
         /// Executes query
         /// </summary>
-        protected virtual TResult Query<TResult>(Query<TResult> queryToExecute)
+        protected TResult Query<TResult>(Query<TResult> queryToExecute)
         {
             return queryToExecute.Execute(Session);
         }

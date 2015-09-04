@@ -7,6 +7,10 @@ using NHibernateMVC.Infrastructure.Command;
 
 namespace NHibernateMVC.Infrastructure.Query
 {
+    /// <summary>
+    /// Base class for Queries
+    /// </summary>
+    /// <typeparam name="TResult">type of returned result</typeparam>
     public abstract class Query<TResult>
     {
         /// <summary>

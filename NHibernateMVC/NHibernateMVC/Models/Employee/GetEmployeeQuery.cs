@@ -15,7 +15,11 @@ namespace NHibernateMVC.Models.Employee
         {
             this.employeeId = employeeId;
         }
-
+        /// <summary>
+        /// executes query
+        /// </summary>
+        /// <param name="session"></param>
+        /// <returns></returns>
         public override EmployeeForm Execute(ISession session)
         {
             var p = session.Get<Domain.Employee.Employee>(employeeId);

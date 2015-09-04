@@ -19,7 +19,7 @@
                 <td>@item.ManagerId</td>
                 <td>@item.Street @item.City @item.ZipCode @item.Country</td>
                 <td>
-                    <a class="btn btn-mini" href="@Url.Action("Edit", "Employee", new { employeeId = @item.EmployeeId })"><i class="icon-edit"></i>Select</a>
+                    <a class="btn btn-mini employeeSelect" href="@Url.Action("Edit", "Employee", new { employeeId = @item.EmployeeId })"><i class="icon-edit"></i>Select</a>
                     <a class="btn btn-mini" href="@Url.Action("Delete", "Employee", new { employeeId = @item.EmployeeId })"><i class="icon-remove"></i>Delete</a>
                 </td>
             </tr>

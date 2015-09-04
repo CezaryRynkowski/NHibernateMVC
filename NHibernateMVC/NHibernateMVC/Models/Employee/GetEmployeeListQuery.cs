@@ -21,7 +21,11 @@ namespace NHibernateMVC.Models.Employee
         {
             searchForm = new EmployeeSearchForm();
         }
-
+        /// <summary>
+        /// Executes query
+        /// </summary>
+        /// <param name="session"></param>
+        /// <returns></returns>
         public override List<EmployeeListItem> Execute(ISession session)
         {
             return session.GetNamedQuery("employeeSearchQuery")
@@ -31,6 +35,7 @@ namespace NHibernateMVC.Models.Employee
                 .SetParameter("manager", searchForm.ManagerId)
                 .SetParameter("zipcode",searchForm.ManagerId)
                 .SetParameter("position", searchForm.Position)
+                .SetParameter("project", searchForm.Project)
                 .SetResultTransformer(Transformers.AliasToBean<EmployeeListItem>())
                 .List<EmployeeListItem>().ToList();
         }
@@ -61,5 +66,7 @@ namespace NHibernateMVC.Models.Employee
         public DateTime? StopDate { get; set; }
 
         public List<Domain.Project.Project> Projects { get; set; }
+
+        public Guid? ProjectId { get; set; }
     }
 }
