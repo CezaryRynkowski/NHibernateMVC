@@ -37,7 +37,7 @@ namespace NHibernateMVC.Domain.Employee
         /// <summary>
         /// employee manager id - nullable if employee dont have
         /// </summary>
-        public virtual Manager Manager { get; set; }
+        public virtual IList<Manager> Managers { get; set; }
         /// <summary>
         /// list of all projects
         /// </summary>

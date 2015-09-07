@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="NHibernateMVC" namespace="NHibernateMVC.Domain.Employee" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Manager" table="Manager" lazy="true" >
+    <id name="ManagerId" column="ManagerId" />
+    <property name="EmployeeId">
+      <column name="EmployeeId" sql-type="uniqueidentifier" not-null="true" />
+    </property>
+    <property name="RoomNumber">
+      <column name="RoomNumber" sql-type="int" not-null="true" />
+    </property>
+    <many-to-one name="Employees" column="EmployeeId"/>
+  </class>
+</hibernate-mapping>

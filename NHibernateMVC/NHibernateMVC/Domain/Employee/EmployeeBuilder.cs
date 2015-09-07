@@ -39,7 +39,7 @@ namespace NHibernateMVC.Domain.Employee
             e.Address.Country = form.City;
             e.Address.Street = form.Street;
             e.Address.ZipCode = form.ZipCode;
-            e.Manager.ManagerId = form.ManagerId;
+            e.Managers = form.ManagerId;
 
             return e;
         }

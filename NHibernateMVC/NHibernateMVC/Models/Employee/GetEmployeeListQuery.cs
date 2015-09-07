@@ -35,7 +35,6 @@ namespace NHibernateMVC.Models.Employee
                 .SetParameter("manager", searchForm.ManagerId)
                 .SetParameter("zipcode",searchForm.ManagerId)
                 .SetParameter("position", searchForm.Position)
-                .SetParameter("project", searchForm.Project)
                 .SetResultTransformer(Transformers.AliasToBean<EmployeeListItem>())
                 .List<EmployeeListItem>().ToList();
         }

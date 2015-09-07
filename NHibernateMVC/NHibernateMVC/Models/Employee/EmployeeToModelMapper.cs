@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using NHibernate.Linq;
+using NHibernate.Util;
 
 namespace NHibernateMVC.Models.Employee
 {
@@ -26,7 +28,7 @@ namespace NHibernateMVC.Models.Employee
               County = employee.Address.City,
               FirstName = employee.FirstName,
               LastName = employee.LastName,
-              ManagerId = employee.Manager.ManagerId,
+              ManagerId = employee.Managers,
               Sex = employee.Sex,
               Street = employee.Address.Street,
               ZipCode = employee.Address.ZipCode,

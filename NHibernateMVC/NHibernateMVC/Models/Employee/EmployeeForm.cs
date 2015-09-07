@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using NHibernateMVC.Domain.Employee;
 
 namespace NHibernateMVC.Models.Employee
 {
@@ -36,7 +37,7 @@ namespace NHibernateMVC.Models.Employee
         /// <summary>
         /// employee Mangager Id uniq
         /// </summary>
-        public Guid? ManagerId { get; set; }
+        public IList<Manager> ManagerId { get; set; }
         /// <summary>
         /// Employee Adres - City
         /// </summary>

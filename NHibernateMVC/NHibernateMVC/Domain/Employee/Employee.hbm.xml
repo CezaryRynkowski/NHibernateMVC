@@ -16,11 +16,11 @@
     <property name="Sex">
       <column name="Sex" sql-type="int" not-null="true" />
     </property>
-    <component name="Manager">
+    <!--<component name="Manager">
       <property name="ManagerId">
         <column name="ManagerId" sql-type="uniqueidentifier" not-null="false" />
-      </property>
-    </component>
+      </property>-->
+    <!--</component>-->
     <component name="Address">
       <property name="City">
         <column name="City" sql-type="varchar" not-null="true" />
@@ -40,11 +40,15 @@
       <key column="EmployeeId" />
       <many-to-many class="NHibernateMVC.Domain.Project.Project"  column="ProjectId"/>
     </bag>
+    <bag name="Managers" inverse="true" table="Manager">
+      <key column="ManagerId"/>
+      <one-to-many class="Manager"/>
+    </bag>
   </class>
 
   <sql-query name="employeeSearchQuery">
     <![CDATA[
-    select
+        select
 e.EmployeeId as EmployeeId,
 e.FirstName as FirstName,
 e.LastName as LastName,
@@ -55,17 +59,14 @@ e.Country as Country,
 e.ZipCode as ZipCode,
 j.PositionId as PositionId,
 j.StartDate as StartDate,
-j.StopDate as StopDate,
-p.ProjectId as ProjectId
+j.StopDate as StopDate
 from Employee e
 left JOIN JobHistory j
 on j.EmployeeId = e.EmployeeId
-join EmployeeProject p 
-on p.EmployeeId = e.EmployeeId
 where 
 (:employeeid is null or e.EmployeeId = :employeeid)
 and
-(:firstname is null or e.FirstName = :firstname)a
+(:firstname is null or e.FirstName = :firstname)
 and
 (:lastname is null or e.LastName = :lastname)
 and
@@ -73,11 +74,9 @@ and
 and
 (:zipcode is null or e.ZipCode = :zipcode)
 and
-(:position is null or j.PositionId = :position)
+(:position is null or j.PositionId = :position and j.StopDate is null)
 and
 (j.StopDate is null)
-and
-(:project is null or p.ProjectId = :project)
     ]]>
   </sql-query>
 </hibernate-mapping>

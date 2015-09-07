@@ -5,11 +5,13 @@ using System.Web;
 
 namespace NHibernateMVC.Domain.Employee
 {
-    public class Manager
+    public class Manager : Employee
     {
-        public virtual string Employee { get; set; }
+        public virtual Guid EmployeeId { get; set; }
         public virtual Guid? ManagerId { get; set; }
-        public string RoomNumber { get; set; }
-        public string Subordinates { get; set; }
+        public virtual string RoomNumber { get; set; }
+        public virtual string Subordinates { get; set; }
+
+        public virtual Employee Employees { get; set; } 
     }
 }
