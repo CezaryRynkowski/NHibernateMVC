@@ -25,7 +25,7 @@ namespace NHibernateMVC.Domain.Employee
             builder.UpdateEmployee(employee,_employeeForm);
             Session.Update(employee);
 
-            return employee.EmployeeId;
+            return employee.Id;
         }
 
         public ISession Session { get; set; }

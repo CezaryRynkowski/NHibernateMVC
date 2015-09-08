@@ -33,7 +33,7 @@ namespace NHibernateMVC.Domain.Employee
                 LastName = form.LastName,
                 BirthDate = form.BirthDate,
                 Sex = form.Sex,
-                EmployeeId = form.EmployeeId,
+                Id = form.EmployeeId,
             };
             e.Address.City = form.City;
             e.Address.Country = form.City;

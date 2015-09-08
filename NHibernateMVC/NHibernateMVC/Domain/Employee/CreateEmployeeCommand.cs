@@ -27,7 +27,7 @@ namespace NHibernateMVC.Domain.Employee
             var employee = builder.ConstructEmployee(_employeeForm);
             Session.Save(employee);
 
-            return employee.EmployeeId;
+            return employee.Id;
         }
 
         public NHibernate.ISession Session { get; set; }

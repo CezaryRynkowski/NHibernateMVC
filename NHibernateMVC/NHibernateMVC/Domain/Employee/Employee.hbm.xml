@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <hibernate-mapping assembly="NHibernateMVC" namespace="NHibernateMVC.Domain.Employee" xmlns="urn:nhibernate-mapping-2.2">
   <class name="Employee" table="Employee" lazy="true" >
-    <id name="EmployeeId" column="EmployeeId" >
+    <id name="Id" column="Id" >
       <generator class="guid.comb" />
     </id>
     <property name="FirstName">
@@ -16,11 +16,6 @@
     <property name="Sex">
       <column name="Sex" sql-type="int" not-null="true" />
     </property>
-    <!--<component name="Manager">
-      <property name="ManagerId">
-        <column name="ManagerId" sql-type="uniqueidentifier" not-null="false" />
-      </property>-->
-    <!--</component>-->
     <component name="Address">
       <property name="City">
         <column name="City" sql-type="varchar" not-null="true" />
@@ -40,16 +35,22 @@
       <key column="EmployeeId" />
       <many-to-many class="NHibernateMVC.Domain.Project.Project"  column="ProjectId"/>
     </bag>
-    <bag name="Managers" inverse="true" table="Manager">
+
+    <joined-subclass
+      table="Manager"
+      name="Manager">
       <key column="ManagerId"/>
-      <one-to-many class="Manager"/>
-    </bag>
+      <property name="EmployeeId" column="EmployeeId"/>
+      <property name="RoomNumber" column="RoomNumber"/>
+    </joined-subclass>
+
+
   </class>
 
   <sql-query name="employeeSearchQuery">
     <![CDATA[
         select
-e.EmployeeId as EmployeeId,
+e.Id as EmployeeId,
 e.FirstName as FirstName,
 e.LastName as LastName,
 e.ManagerId as ManagerId,
@@ -62,9 +63,9 @@ j.StartDate as StartDate,
 j.StopDate as StopDate
 from Employee e
 left JOIN JobHistory j
-on j.EmployeeId = e.EmployeeId
+on j.EmployeeId = e.Id
 where 
-(:employeeid is null or e.EmployeeId = :employeeid)
+(:employeeid is null or e.Id = :employeeid)
 and
 (:firstname is null or e.FirstName = :firstname)
 and
@@ -79,6 +80,16 @@ and
 (j.StopDate is null)
     ]]>
   </sql-query>
+
+  <sql-query name="GetAllManagers">
+   <![CDATA[
+SELECT m.ManagerId,
+e.Id,
+e.FirstName,
+e.LastName
+  FROM Manager m 
+ join Employee e
+ on e.Id = m.EmployeeId
+   ]]> 
+  </sql-query>
 </hibernate-mapping>
-<!--and
-(:position is null or j.PositionId = :position and j.StopDate = null)-->

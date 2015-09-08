@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using NHibernateMVC.Domain.Employee;
 using NHibernateMVC.Domain.JobHistory;
@@ -25,8 +26,8 @@ namespace NHibernateMVC.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var vm = new EmployeeViewModel();
-            return View(vm);
+            var cmd2 = Query(new GetAllManagers());
+            return View("Create", new EmployeeViewModel(cmd2));
         }
         /// <summary>
         /// Creates employee
@@ -83,6 +84,7 @@ namespace NHibernateMVC.Controllers
         {
             var cmdResults = Query(new GetPositionQuery());
             var cmd2 = Query(new GetAllProjectsQuery());
+
             return View("Search", new EmployeeSearchViewModel(cmdResults.AllPositions, cmd2.AllProjects));
         }
         /// <summary>

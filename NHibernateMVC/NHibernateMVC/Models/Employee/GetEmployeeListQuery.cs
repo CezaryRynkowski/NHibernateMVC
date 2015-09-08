@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using NHibernate;
 using NHibernate.Transform;
+using NHibernateMVC.Domain.Employee;
 using NHibernateMVC.Infrastructure.Query;
 
 namespace NHibernateMVC.Models.Employee
@@ -67,5 +68,9 @@ namespace NHibernateMVC.Models.Employee
         public List<Domain.Project.Project> Projects { get; set; }
 
         public Guid? ProjectId { get; set; }
+
+        public Guid Id { get; set; }
+
+        public int RoomNumber { get; set; }
     }
 }

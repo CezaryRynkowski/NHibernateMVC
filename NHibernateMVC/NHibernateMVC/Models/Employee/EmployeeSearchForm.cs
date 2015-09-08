@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using NHibernateMVC.Domain.Employee;
 using NHibernateMVC.Domain.JobHistory;
 
 namespace NHibernateMVC.Models.Employee
@@ -44,5 +45,7 @@ namespace NHibernateMVC.Models.Employee
         /// List of all project from db
         /// </summary>
         public List<Domain.Project.Project> AllProjects { get; set; }
+
+        public List<EmployeeListItem> AllManagers { get; set; }
     }
 }

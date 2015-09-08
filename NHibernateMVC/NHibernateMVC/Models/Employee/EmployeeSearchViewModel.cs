@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using NHibernateMVC.Domain.Employee;
 using NHibernateMVC.Domain.JobHistory;
 
 namespace NHibernateMVC.Models.Employee

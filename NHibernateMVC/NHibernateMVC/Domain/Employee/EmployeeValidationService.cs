@@ -19,8 +19,8 @@ namespace NHibernateMVC.Domain.Employee
         public bool IsEmployeeNumberUnique(Employee employee)
         {
             var employeeWithTheSameNumber =
-                Session.QueryOver<Employee>().Where(e => e.EmployeeId == employee.EmployeeId).SingleOrDefault();
-            return employeeWithTheSameNumber == null || employeeWithTheSameNumber.EmployeeId == employee.EmployeeId;
+                Session.QueryOver<Employee>().Where(e => e.Id == employee.Id).SingleOrDefault();
+            return employeeWithTheSameNumber == null || employeeWithTheSameNumber.Id == employee.Id;
         }
     }
 }

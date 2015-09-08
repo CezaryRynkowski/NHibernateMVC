@@ -37,7 +37,7 @@ namespace NHibernateMVC.Models.Employee
         /// <summary>
         /// employee Mangager Id uniq
         /// </summary>
-        public IList<Manager> ManagerId { get; set; }
+        public Manager ManagerId { get; set; }
         /// <summary>
         /// Employee Adres - City
         /// </summary>
@@ -66,6 +66,8 @@ namespace NHibernateMVC.Models.Employee
         /// List of all projects in company
         /// </summary>
         public List<Domain.Project.Project> AllProjects { private get; set; }
+
+        public List<EmployeeListItem> AllManagers { get; set; } 
         /// <summary>
         /// enum for employee gender choose
         /// </summary>
@@ -92,6 +94,7 @@ namespace NHibernateMVC.Models.Employee
             ZipCode = employeeForm.ZipCode;
             Projects = employeeForm.Projects;
             AllProjects = employeeForm.AllProjects;
+            AllManagers = employeeForm.AllManagers;
         }
         /// <summary>
         /// empty constructor

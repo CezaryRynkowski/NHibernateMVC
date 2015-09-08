@@ -184,6 +184,7 @@
     <Compile Include="Models\Employee\EmployeeSearchViewModel.cs" />
     <Compile Include="Models\Employee\EmployeeToModelMapper.cs" />
     <Compile Include="Models\Employee\EmployeeViewModel.cs" />
+    <Compile Include="Models\Employee\GetAllManagers.cs" />
     <Compile Include="Models\Employee\GetEmployeeListQuery.cs" />
     <Compile Include="Models\Employee\GetEmployeeQuery.cs" />
     <Compile Include="Models\JobHistory\JobHistoryForm.cs" />
@@ -263,11 +264,12 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <None Include="logging.config" />
-    <EmbeddedResource Include="Domain\Employee\Employee.hbm.xml" />
+    <EmbeddedResource Include="Domain\Employee\Employee.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Domain\Project\Project.hbm.xml" />
     <EmbeddedResource Include="Domain\JobHistory\JobHistory.hbm.xml" />
     <EmbeddedResource Include="Domain\JobHistory\Position.hbm.xml" />
-    <EmbeddedResource Include="Domain\Employee\Manager.hbm.xml" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />

@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Castle.Components.DictionaryAdapter;
 using NHibernate.Linq;
 using NHibernate.Util;
+using NHibernateMVC.Domain.Employee;
 
 namespace NHibernateMVC.Models.Employee
 {
@@ -22,7 +24,7 @@ namespace NHibernateMVC.Models.Employee
         {
             return new EmployeeForm
             {
-              EmployeeId  = employee.EmployeeId,
+              EmployeeId  = employee.Id,
               BirthDate = employee.BirthDate,
               City = employee.Address.City,
               County = employee.Address.City,
@@ -42,8 +44,16 @@ namespace NHibernateMVC.Models.Employee
        {
            return new EmployeeSearchResultItem()
            {
-               EmployeeId = e.EmployeeId,
+               EmployeeId = e.Id,
                Name = string.Concat(e.FirstName," ",e.LastName)
+           };
+       }
+
+       public static EmployeeForm MapToItem(Models.Employee.EmployeeSearchForm m)
+       {
+           return new EmployeeForm()
+           {
+               AllManagers = m.AllManagers
            };
        }
     }

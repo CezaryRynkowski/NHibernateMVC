@@ -17,7 +17,7 @@ namespace NHibernateMVC.Domain.Employee
         /// <summary>
         /// Employee Id - Guid
         /// </summary>
-        public virtual Guid EmployeeId { get; set; }
+        public virtual Guid Id { get; set; }
         /// <summary>
         /// Employee first name
         /// </summary>
@@ -37,7 +37,7 @@ namespace NHibernateMVC.Domain.Employee
         /// <summary>
         /// employee manager id - nullable if employee dont have
         /// </summary>
-        public virtual IList<Manager> Managers { get; set; }
+        public virtual Manager Managers { get; set; }
         /// <summary>
         /// list of all projects
         /// </summary>

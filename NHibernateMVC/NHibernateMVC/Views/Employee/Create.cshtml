@@ -64,7 +64,7 @@
                 <div class="control-group">
                     <div class="controls">
                         @Html.Label("ManagerId")
-                        @Html.TextBoxFor(m => m.EmployeeForm.ManagerId)
+                        @Html.DropDownListFor(x=>x.EmployeeForm.ManagerId, Model.EmployeeForm.AllManagers.Select(z=>new SelectListItem {Text = z.FirstName+z.LastName, Value = z.EmployeeId.ToString(), Selected = false}),"---SELECT---", new {id = "DropDownListForManagers"})
                         @Html.ValidationMessageFor(m=>m.EmployeeForm.ManagerId)
                     </div>
                 </div>
