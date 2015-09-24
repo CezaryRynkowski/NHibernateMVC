@@ -106,5 +106,18 @@ namespace NHibernateMVC.Controllers
             return RedirectToAction("Search", "Employee");
         }
 
+        public ActionResult SearchFindViaCriteria()
+        {
+            var cmdResults = Query(new GetPositionQuery());
+            var cmd2 = Query(new GetAllProjectsQuery());
+
+            return View("SearchViaCriteria", new EmployeeSearchViewModel(cmdResults.AllPositions, cmd2.AllProjects));
+        }
+
+        [HttpPost]
+        public ActionResult FindViaCriteria(EmployeeSearchForm searchForm)
+        {
+            return PartialView("_EmployeeList", Query(new FindEmployeeViaCriteriaQuery(searchForm)));
+        }
     }
 }

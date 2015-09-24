@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using NHibernate;
-using NHibernateMVC.Infrastructure.Command;
 using NHibernateMVC.Infrastructure.Query;
 
 namespace NHibernateMVC.Domain.Project

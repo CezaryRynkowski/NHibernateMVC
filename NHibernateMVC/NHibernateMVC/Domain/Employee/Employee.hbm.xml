@@ -80,16 +80,4 @@ and
 (j.StopDate is null)
     ]]>
   </sql-query>
-
-  <sql-query name="GetAllManagers">
-   <![CDATA[
-SELECT m.ManagerId,
-e.Id,
-e.FirstName,
-e.LastName
-  FROM Manager m 
- join Employee e
- on e.Id = m.EmployeeId
-   ]]> 
-  </sql-query>
 </hibernate-mapping>

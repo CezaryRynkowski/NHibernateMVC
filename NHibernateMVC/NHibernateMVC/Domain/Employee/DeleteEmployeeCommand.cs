@@ -7,7 +7,6 @@ namespace NHibernateMVC.Domain.Employee
     public class DeleteEmployeeCommand : Command<Employee>, INeedSession, INeedAutocommitTransaction
     {
         private readonly Guid _employeeId;
-        private EmployeeBuilder _employeeBuilder;
 
         public DeleteEmployeeCommand(Guid employeeId)
         {
@@ -29,7 +28,7 @@ namespace NHibernateMVC.Domain.Employee
 
         public override void SetupDependencies(IWindsorContainer container)
         {
-            _employeeBuilder = container.Resolve<EmployeeBuilder>();
+            if (container != null) container.Resolve<EmployeeBuilder>();
         }
     }
 }

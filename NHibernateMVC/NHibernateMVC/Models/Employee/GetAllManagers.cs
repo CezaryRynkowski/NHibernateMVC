@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using NHibernate;
-using NHibernate.Transform;
-using NHibernateMVC.Domain.Employee;
 using NHibernateMVC.Infrastructure.Query;
 
 namespace NHibernateMVC.Models.Employee
 {
-    public class GetAllManagers : Query<List<EmployeeListItem>>
+    internal class GetAllManagers : Query<List<EmployeeListItem>>
     {
+        /// <summary>
+        /// Implement this method to construct and execute a query against provided NHibernate session
+        /// </summary>
+        /// <param name="session">NHibernate session</param>
         public override List<EmployeeListItem> Execute(ISession session)
         {
-            return session.GetNamedQuery("GetAllManagers")
-                 .SetResultTransformer(Transformers.AliasToBean<EmployeeListItem>())
+            return session.QueryOver<EmployeeListItem>()
+                .Where(x => x.ManagerId != Guid.Empty)
                 .List<EmployeeListItem>().ToList();
         }
     }

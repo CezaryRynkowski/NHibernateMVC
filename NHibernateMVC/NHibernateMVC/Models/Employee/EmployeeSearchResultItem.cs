@@ -15,5 +15,11 @@ namespace NHibernateMVC.Models.Employee
         /// employee name - employee first name + employe last name
         /// </summary>
         public string Name { get; set; }
+
+        //public EmployeeSearchResultItem(Domain.Employee.Employee emplyoee)
+        //{
+        //    EmployeeId = emplyoee.Id;
+        //    Name = string.Concat(emplyoee.FirstName, " ", emplyoee.LastName);
+        //}
     }
 }

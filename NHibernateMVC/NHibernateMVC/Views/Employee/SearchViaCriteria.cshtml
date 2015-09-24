@@ -1,0 +1,48 @@
+﻿@model NHibernateMVC.Models.Employee.EmployeeSearchViewModel
+@{
+    ViewBag.Title = "Search";
+}
+
+<div class="span9" id="employeeSearch">
+    @using (Html.BeginForm("FindViaCriteria", "Employee", FormMethod.Post, new { id = "EmployeeSearchForm" }))
+    {
+        @Html.Hidden("isModal", true)
+        <fieldset>
+            <legend>Search Employee</legend>
+
+            <div class="controls">
+                @Html.TextBoxFor(m => m.SearchForm.EmployeeId, new { @class = "span3", placeholder = "Employee number" })
+            </div>
+            <div class="controls controls-row">
+                @Html.TextBoxFor(m => m.SearchForm.FirstName, new { @class = "span2", placeholder = "First name" })
+                @Html.TextBoxFor(m => m.SearchForm.LastName, new { @class = "span2", placeholder = "Last name" })
+                @Html.TextBoxFor(m => m.SearchForm.ManagerId, new { @class = "span2", placeholder = "ManagerId" })
+                @Html.TextBoxFor(m => m.SearchForm.ZipCode, new { @class = "span2", placeholder = "ZipCode" })
+                @Html.DropDownListFor(m => m.SearchForm.Position, Model.SearchForm.Positions.Select(z => new SelectListItem { Text = z.Name, Value = z.PositionId.ToString(), Selected = false }), "---SELECT POSITION---", new { id = "PositionDownListSelect" })
+                @Html.DropDownListFor(m => m.SearchForm.Project, Model.SearchForm.AllProjects.Select(z => new SelectListItem { Text = z.ProjectName, Value = z.ProjectId.ToString(), Selected = false }), "---SELECT PROJECT---",new {id = "ProjectDownListSelect"})
+            </div>
+
+            <div class="control-group">
+                <button type="submit" class="btn btn-info">Search</button>
+            </div>
+            <div class="control-group">
+                <button onclick="location.reload()" class="btn btn-info" id="reloadBtn">Clear</button>
+            </div>
+        </fieldset>
+    }
+    <div class="control-group">
+        <a class="btn btn-info">Create new Employee</a>
+    </div>
+    <div id="employeeSearchResults" class="span12">
+    </div>
+
+</div>
+
+<script type="text/javascript" src="/Scripts/Application/Employee/SearchEmployeeController.js"></script>
+<script type="text/javascript">
+    //init controller
+    $(function () {
+        var ctrl = new SerachEmployeeController();
+        ctrl.init();
+    })
+</script>

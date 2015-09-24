@@ -3,8 +3,8 @@
 <html>
 <head>
     <title>@ViewBag.Title</title>
-    @*    //<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
-    //<script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>*@
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -27,6 +27,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="@Url.Action("Create", "Employee")">Create</a></li>
                             <li><a href="@Url.Action("Search", "Employee")">Search</a></li>
+                            <li><a href="@Url.Action("SearchFindViaCriteria","Employee")">Search via Criteria</a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Project <span class="caret"></span></a>

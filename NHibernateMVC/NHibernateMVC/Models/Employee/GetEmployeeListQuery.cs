@@ -72,5 +72,20 @@ namespace NHibernateMVC.Models.Employee
         public Guid Id { get; set; }
 
         public int RoomNumber { get; set; }
+
+        public EmployeeListItem(Domain.Employee.Employee employee)
+        {
+            FirstName = employee.FirstName;
+            LastName = employee.LastName;
+            Id = employee.Id;
+            EmployeeId = employee.Id;
+            City = employee.Address.City;
+            Street = employee.Address.Street;
+            Country = employee.Address.Country;
+            ZipCode = employee.Address.ZipCode;
+        }
+
+        public EmployeeListItem() { }
     }
+
 }

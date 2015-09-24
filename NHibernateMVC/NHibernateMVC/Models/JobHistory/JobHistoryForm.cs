@@ -46,7 +46,6 @@ namespace NHibernateMVC.Models.JobHistory
         /// <param name="jobHistoryForm"></param>
         public JobHistoryForm(JobHistoryForm jobHistoryForm)
         {
-            //JobHistoryId = jobHistoryForm.JobHistoryId;
             PositionId = jobHistoryForm.PositionId;
             StartDate = jobHistoryForm.StartDate;
             StopDate = jobHistoryForm.StopDate;

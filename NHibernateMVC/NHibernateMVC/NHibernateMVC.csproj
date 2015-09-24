@@ -184,6 +184,7 @@
     <Compile Include="Models\Employee\EmployeeSearchViewModel.cs" />
     <Compile Include="Models\Employee\EmployeeToModelMapper.cs" />
     <Compile Include="Models\Employee\EmployeeViewModel.cs" />
+    <Compile Include="Models\Employee\FindEmployeeViaCriteriaQuery.cs" />
     <Compile Include="Models\Employee\GetAllManagers.cs" />
     <Compile Include="Models\Employee\GetEmployeeListQuery.cs" />
     <Compile Include="Models\Employee\GetEmployeeQuery.cs" />
@@ -318,6 +319,7 @@
     <Content Include="Views\Project\Edit.cshtml" />
     <Content Include="Views\JobHistory\ShowJobHistory.cshtml" />
     <Content Include="Views\JobHistory\Create.cshtml" />
+    <Content Include="Views\Employee\SearchViaCriteria.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
